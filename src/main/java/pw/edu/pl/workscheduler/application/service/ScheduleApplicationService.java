@@ -1,29 +1,31 @@
 package pw.edu.pl.workscheduler.application.service;
 
-import java.time.LocalTime;
 import java.time.YearMonth;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pw.edu.pl.workscheduler.adapter.out.persistence.ServicePersistentAdapter;
+import pw.edu.pl.workscheduler.application.repository.SchedulePort;
+import pw.edu.pl.workscheduler.domain.DtoMapper;
 import pw.edu.pl.workscheduler.domain.Schedule;
+import pw.edu.pl.workscheduler.domain.commands.InitiateScheduleCommand;
+import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 
 @Service
 public class ScheduleApplicationService {
 
-    ServicePersistentAdapter persistentAdapter;
+    SchedulePort schedulePort;
 
     @Autowired
-    public ScheduleApplicationService(ServicePersistentAdapter persistentAdapter) {
-        this.persistentAdapter = persistentAdapter;
+    public ScheduleApplicationService(SchedulePort schedulePort) {
+        this.schedulePort = schedulePort;
     }
 
-    public Schedule initializeSchedule(
-            YearMonth month, LocalTime startTime, LocalTime endTime, List<LocalTime> shifts) {
-        Schedule schedule = new Schedule();
-        schedule.setMonth(month);
-        schedule.generateShiftDays(startTime, endTime, shifts);
+    public ScheduleDTO initializeSchedule(InitiateScheduleCommand command) {
 
-        return persistentAdapter.saveSchedule(schedule);
+        Schedule schedule = new Schedule();
+        schedule.setMonth(YearMonth.of(command.getYear(), command.getMonth()));
+        schedule.generateShiftDays(
+                command.getStartTime(), command.getEndTime(), command.getShiftTimes());
+
+        return schedulePort.saveSchedule(DtoMapper.toScheduleDTO(schedule));
     }
 }

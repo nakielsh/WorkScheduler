@@ -1,18 +1,20 @@
 package pw.edu.pl.workscheduler.domain;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@NoArgsConstructor
 @Setter
-public class Shift {
+@NoArgsConstructor
+@AllArgsConstructor
+class Shift {
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private Employee employee;
+    private Employee employee = null;
 
     public Shift(LocalDateTime startTime, LocalDateTime endTime) {
         this.startTime = startTime;

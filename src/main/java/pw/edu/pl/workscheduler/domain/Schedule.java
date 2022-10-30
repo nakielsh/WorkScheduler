@@ -1,29 +1,23 @@
 package pw.edu.pl.workscheduler.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@JsonInclude()
 @Getter
 @Setter
 public class Schedule {
 
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-yyyy")
     private YearMonth month;
     //    private final AppUser owner = new AppUser();
-    @JsonProperty private List<ShiftDay> shiftDays = new ArrayList<>();
+    private List<ShiftDay> shiftDays = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
 
     public void generateShiftDays(
@@ -36,5 +30,22 @@ public class Schedule {
                             endTime,
                             shiftTimes));
         }
+    }
+
+    public void addEmployee(Employee employee) {
+        if (isEmployeeInTheList(employee)) {
+            employeeList.stream()
+                    .filter(empl -> Objects.equals(empl.getName(), employee.getName()))
+                    .findFirst()
+                    .ifPresent(
+                            empl -> empl.addToUnavailabilityList(employee.getUnavailabilityList()));
+        } else {
+            employeeList.add(employee);
+        }
+    }
+
+    private boolean isEmployeeInTheList(Employee employee) {
+        return employeeList.stream()
+                .anyMatch(empl -> Objects.equals(empl.getName(), employee.getName()));
     }
 }

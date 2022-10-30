@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.adapter;
+package pw.edu.pl.workscheduler.infrastructure.repository.entities;
 
 import java.util.Collection;
 import javax.persistence.ElementCollection;
@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pw.edu.pl.workscheduler.domain.TimeFrame;
+import lombok.ToString;
+import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 
 @Table(name = "employees")
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class EmployeeEntity {
 
     @Id
@@ -27,7 +29,7 @@ public class EmployeeEntity {
 
     private String name;
 
-    @ElementCollection private Collection<TimeFrame> unavailabilityList;
+    @ElementCollection private Collection<TimeFrameDTO> unavailabilityList;
 
     @ManyToMany(mappedBy = "employeeList")
     private Collection<ScheduleEntity> schedules;

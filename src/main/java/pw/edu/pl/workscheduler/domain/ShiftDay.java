@@ -1,7 +1,6 @@
 package pw.edu.pl.workscheduler.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -16,7 +15,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Setter
-public class ShiftDay implements Serializable {
+class ShiftDay {
 
     private LocalDate date;
     private List<Shift> shiftsForADay = new ArrayList<>();
@@ -32,9 +31,14 @@ public class ShiftDay implements Serializable {
         generateShifts(shifts);
     }
 
-    public ShiftDay(LocalDate date, List<LocalTime> shifts) {
+    //    public ShiftDay(LocalDate date, List<LocalTime> shifts) {
+    //        this.date = date;
+    //        generateShifts(shifts);
+    //    }
+
+    public ShiftDay(LocalDate date, List<Shift> shiftsForADay) {
         this.date = date;
-        generateShifts(shifts);
+        this.shiftsForADay = shiftsForADay;
     }
 
     private void generateShifts(List<LocalTime> shifts) {

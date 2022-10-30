@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.adapter;
+package pw.edu.pl.workscheduler.infrastructure.repository.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.YearMonth;
@@ -33,7 +33,7 @@ public class ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<ShiftDayEntity> shiftDays;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "EMPLOYEES_FOR_SCHEDULE",
             joinColumns = @JoinColumn(name = "SCHEDULE_ID"),

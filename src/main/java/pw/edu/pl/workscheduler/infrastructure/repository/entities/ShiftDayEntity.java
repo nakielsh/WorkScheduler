@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.adapter;
+package pw.edu.pl.workscheduler.infrastructure.repository.entities;
 
 import java.time.LocalDate;
 import java.util.Collection;
