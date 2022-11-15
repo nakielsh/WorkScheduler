@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pw.edu.pl.workscheduler.infrastructure.repository.entities.EmployeeEntity;
 
-public interface SpringDataEmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
+interface SpringDataEmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
 
     Optional<EmployeeEntity> findFirstByName(String name);
 }

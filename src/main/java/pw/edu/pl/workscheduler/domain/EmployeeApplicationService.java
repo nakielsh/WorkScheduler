@@ -1,15 +1,13 @@
-package pw.edu.pl.workscheduler.application.service;
+package pw.edu.pl.workscheduler.domain;
 
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pw.edu.pl.workscheduler.application.repository.EmployeePort;
-import pw.edu.pl.workscheduler.application.repository.SchedulePort;
-import pw.edu.pl.workscheduler.domain.DtoMapper;
-import pw.edu.pl.workscheduler.domain.Employee;
-import pw.edu.pl.workscheduler.domain.Schedule;
 import pw.edu.pl.workscheduler.domain.commands.AddEmployeeToScheduleCommand;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
+import pw.edu.pl.workscheduler.domain.repository.EmployeePort;
+import pw.edu.pl.workscheduler.domain.repository.SchedulePort;
 
 @Service
 public class EmployeeApplicationService {
@@ -40,7 +38,8 @@ public class EmployeeApplicationService {
         } else {
             Employee employee = DtoMapper.toEmployee(employeeDTO);
             employee.addToUnavailabilityList(
-                    command.getUnavailability().stream().map(DtoMapper::toTimeFrame).toList());
+                command.getUnavailability().stream().map(DtoMapper::toTimeFrame).collect(
+                    Collectors.toSet()));
             employeeDTO = DtoMapper.toEmployeeDTO(employee);
         }
         return employeeDTO;

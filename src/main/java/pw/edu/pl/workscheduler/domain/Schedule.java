@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Schedule {
+class Schedule {
 
     private Long id;
 
@@ -21,14 +21,14 @@ public class Schedule {
     private List<Employee> employeeList = new ArrayList<>();
 
     public void generateShiftDays(
-            LocalTime startTime, LocalTime endTime, List<LocalTime> shiftTimes) {
+        LocalTime startTime, LocalTime endTime, List<LocalTime> shiftTimes) {
         for (int i = 0; i < month.lengthOfMonth(); i++) {
             shiftDays.add(
-                    new ShiftDay(
-                            LocalDate.of(month.getYear(), month.getMonth(), i + 1),
-                            startTime,
-                            endTime,
-                            shiftTimes));
+                new ShiftDay(
+                    LocalDate.of(month.getYear(), month.getMonth(), i + 1),
+                    startTime,
+                    endTime,
+                    shiftTimes));
         }
     }
 

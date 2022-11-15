@@ -3,6 +3,7 @@ package pw.edu.pl.workscheduler.domain.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,7 +15,7 @@ public class EmployeeDTO {
     private Long id;
     private String name;
 
-    private List<TimeFrameDTO> unavailabilityList;
+    private Set<TimeFrameDTO> unavailabilityList;
 
     private List<ShiftDTO> shifts;
 }

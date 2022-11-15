@@ -1,13 +1,11 @@
-package pw.edu.pl.workscheduler.application.service;
+package pw.edu.pl.workscheduler.domain;
 
 import java.time.YearMonth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pw.edu.pl.workscheduler.application.repository.SchedulePort;
-import pw.edu.pl.workscheduler.domain.DtoMapper;
-import pw.edu.pl.workscheduler.domain.Schedule;
 import pw.edu.pl.workscheduler.domain.commands.InitiateScheduleCommand;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
+import pw.edu.pl.workscheduler.domain.repository.SchedulePort;
 
 @Service
 public class ScheduleApplicationService {

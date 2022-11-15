@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.application.repository;
+package pw.edu.pl.workscheduler.domain.repository;
 
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 
