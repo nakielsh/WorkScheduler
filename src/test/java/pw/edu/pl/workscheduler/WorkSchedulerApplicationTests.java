@@ -7,5 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class WorkSchedulerApplicationTests {
 
     @Test
-    void contextLoads() {}
+    void contextLoads() {
+        //:D
+    }
 }
