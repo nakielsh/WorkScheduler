@@ -1,8 +1,8 @@
-package pw.edu.pl.workscheduler.application.repository;
+package pw.edu.pl.workscheduler.domain.ports;
 
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 
-public interface SchedulePort {
+public interface ScheduleOutputPort {
 
     ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO);
 

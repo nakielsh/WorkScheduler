@@ -1,36 +1,21 @@
 package pw.edu.pl.workscheduler.infrastructure.repository;
 
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-import pw.edu.pl.workscheduler.application.repository.EmployeePort;
-import pw.edu.pl.workscheduler.application.repository.SchedulePort;
+import lombok.AllArgsConstructor;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
-import pw.edu.pl.workscheduler.infrastructure.repository.entities.EmployeeEntity;
-import pw.edu.pl.workscheduler.infrastructure.repository.entities.EntityMapper;
-import pw.edu.pl.workscheduler.infrastructure.repository.entities.ScheduleEntity;
+import pw.edu.pl.workscheduler.domain.ports.EmployeeOutputPort;
+import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort;
 
-@Component
-public class ServicePersistentAdapter implements SchedulePort, EmployeePort {
+import java.util.Optional;
 
-    SpringDataScheduleRepository scheduleRepository;
-    SpringDataShiftDaysRepository springDataShiftDaysRepository;
-    SpringDataShiftRepository springDataShiftRepository;
-    SpringDataEmployeeRepository employeeRepository;
+@AllArgsConstructor
+class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort {
 
-    @Autowired
-    public ServicePersistentAdapter(
-            SpringDataScheduleRepository scheduleRepository,
-            SpringDataShiftDaysRepository springDataShiftDaysRepository,
-            SpringDataShiftRepository springDataShiftRepository,
-            SpringDataEmployeeRepository employeeRepository) {
-        this.scheduleRepository = scheduleRepository;
-        this.springDataShiftDaysRepository = springDataShiftDaysRepository;
-        this.springDataShiftRepository = springDataShiftRepository;
-        this.employeeRepository = employeeRepository;
-    }
+    private final ScheduleRepository scheduleRepository;
+    private final ShiftDaysRepository shiftDaysRepository;
+    private final ShiftRepository shiftRepository;
+    private final EmployeeRepository employeeRepository;
+
 
     @Override
     public ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO) {
@@ -39,7 +24,6 @@ public class ServicePersistentAdapter implements SchedulePort, EmployeePort {
         return EntityMapper.toScheduleDTO(scheduleEntity);
     }
 
-    @Transactional
     @Override
     public ScheduleDTO updateSchedule(ScheduleDTO scheduleDTO) {
         ScheduleEntity scheduleEntity =

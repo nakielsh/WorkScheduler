@@ -1,12 +1,13 @@
 package pw.edu.pl.workscheduler.domain;
 
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 @Getter
-public class TimeFrame {
+class TimeFrame {
 
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;

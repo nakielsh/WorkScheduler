@@ -1,14 +1,19 @@
 package pw.edu.pl.workscheduler.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.dto.ShiftDTO;
 import pw.edu.pl.workscheduler.domain.dto.ShiftDayDTO;
 import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 
-public class DtoMapper {
+import java.util.List;
+import java.util.stream.Collectors;
+
+class DtoMapper {
+
+
+    //would split into ScheduleDtoMapper and EmployeeDtoMapper
+
 
     public static ScheduleDTO toScheduleDTO(Schedule schedule) {
         return new ScheduleDTO(

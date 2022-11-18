@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.domain;
+package pw.edu.pl.workscheduler.domain.dto;
 
 import org.springframework.stereotype.Component;
 
