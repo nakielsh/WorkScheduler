@@ -13,14 +13,13 @@ class EmployeeService {
     private final ScheduleOutputPort schedulePort;
     private final EmployeeOutputPort employeePort;
 
-    //when there is no Employee entity in scope, you can just name vars 'employee'
     ScheduleDTO addEmployeeToSchedule(AddEmployeeToScheduleCommand command) {
         EmployeeDTO employeeDTO = getEmployeeDTO(command);
 
         Schedule schedule = getSchedule(command.getScheduleId());
-        schedule.addEmployee(DtoMapper.toEmployee(employeeDTO));
+        schedule.addEmployee(EmployeeDtoMapper.toEmployee(employeeDTO));
 
-        return schedulePort.updateSchedule(DtoMapper.toScheduleDTO(schedule));
+        return schedulePort.updateSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
     }
 
     private EmployeeDTO getEmployeeDTO(AddEmployeeToScheduleCommand command) {
@@ -29,16 +28,16 @@ class EmployeeService {
             employeeDTO =
                     new EmployeeDTO(null, command.getName(), command.getUnavailability(), null);
         } else {
-            Employee employee = DtoMapper.toEmployee(employeeDTO);
+            Employee employee = EmployeeDtoMapper.toEmployee(employeeDTO);
             employee.addToUnavailabilityList(
-                    command.getUnavailability().stream().map(DtoMapper::toTimeFrame).toList());
-            employeeDTO = DtoMapper.toEmployeeDTO(employee);
+                command.getUnavailability().stream().map(EmployeeDtoMapper::toTimeFrame).toList());
+            employeeDTO = EmployeeDtoMapper.toEmployeeDTO(employee);
         }
         return employeeDTO;
     }
 
     private Schedule getSchedule(Long scheduleId) {
         ScheduleDTO scheduleDTO = schedulePort.getSchedule(scheduleId);
-        return DtoMapper.toSchedule(scheduleDTO);
+        return ScheduleDtoMapper.toSchedule(scheduleDTO);
     }
 }

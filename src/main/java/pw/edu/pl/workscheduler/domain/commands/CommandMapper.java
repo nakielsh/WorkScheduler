@@ -1,8 +1,11 @@
 package pw.edu.pl.workscheduler.domain.commands;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.AddEmployeeToScheduleRequest;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateScheduleRequest;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommandMapper {
 
     public static AddEmployeeToScheduleCommand toAddEmployeeToScheduleCommand(
@@ -15,7 +18,6 @@ public class CommandMapper {
             InitiateScheduleRequest request) {
         return new InitiateScheduleCommand(
                 request.getMonth(),
-                request.getYear(),
                 request.getStartTime(),
                 request.getEndTime(),
                 request.getShiftTimes());

@@ -5,8 +5,6 @@ import pw.edu.pl.workscheduler.domain.commands.InitiateScheduleCommand;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort;
 
-import java.time.YearMonth;
-
 @AllArgsConstructor
 class ScheduleService {
 
@@ -15,11 +13,11 @@ class ScheduleService {
     ScheduleDTO initializeSchedule(InitiateScheduleCommand command) {
 
         Schedule schedule = new Schedule();
-        schedule.setMonth(YearMonth.of(command.getYear(), command.getMonth()));
+        schedule.setMonth(command.getMonth());
         schedule.generateShiftDays(
-                command.getStartTime(), command.getEndTime(), command.getShiftTimes());
+            command.getStartTime(), command.getEndTime(), command.getShiftTimes());
 
-        return schedulePort.saveSchedule(DtoMapper.toScheduleDTO(schedule));
+        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
     }
 
     ScheduleDTO getSchedule(Long scheduleId) {

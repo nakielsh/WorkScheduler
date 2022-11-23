@@ -1,20 +1,16 @@
 package pw.edu.pl.workscheduler.infrastructure.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class InitiateScheduleRequest {
 
-    /*
-    prolly good to use java date
-     */
-
-    private int month;
-    private int year;
+    @JsonFormat(pattern = "yyyy-MM")
+    private YearMonth month;
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime startTime;
