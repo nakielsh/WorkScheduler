@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Employee {
+class Employee {
 
     private Long id;
     private String name;
@@ -16,9 +16,9 @@ public class Employee {
 
     private List<Shift> shifts;
 
-    public void addToUnavailabilityList(List<TimeFrame> timeFrames) {
+    void addToUnavailabilityList(List<TimeFrame> timeFrames) {
         for (TimeFrame timeframe : timeFrames) {
-            if (unavailabilityList.contains(timeframe)) {
+            if (!unavailabilityList.contains(timeframe)) {
                 unavailabilityList.add(timeframe);
             }
         }

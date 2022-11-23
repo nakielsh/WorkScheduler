@@ -1,8 +1,10 @@
-package pw.edu.pl.workscheduler.infrastructure.repository.entities;
+package pw.edu.pl.workscheduler.infrastructure.repository;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.YearMonth;
-import java.util.Collection;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,16 +15,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.YearMonth;
+import java.util.Collection;
 
-@Table(name = "schedules")
+@Table(name = "schedules")//name table as you would name a single row
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleEntity {
+class ScheduleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

@@ -1,14 +1,15 @@
-package pw.edu.pl.workscheduler.infrastructure.repository.entities;
+package pw.edu.pl.workscheduler.infrastructure.repository;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.dto.ShiftDTO;
 import pw.edu.pl.workscheduler.domain.dto.ShiftDayDTO;
 import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 
-public class EntityMapper {
+import java.util.List;
+import java.util.stream.Collectors;
+
+class EntityMapper {
 
     public static ScheduleEntity toEntity(ScheduleDTO scheduleDTO) {
         ScheduleEntity scheduleEntity = new ScheduleEntity();

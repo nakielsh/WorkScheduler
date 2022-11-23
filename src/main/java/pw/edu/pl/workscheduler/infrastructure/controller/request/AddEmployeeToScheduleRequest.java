@@ -1,4 +1,4 @@
-package pw.edu.pl.workscheduler.infrastructure.controller;
+package pw.edu.pl.workscheduler.infrastructure.controller.request;
 
 import java.util.List;
 import lombok.Getter;
@@ -9,5 +9,5 @@ public class AddEmployeeToScheduleRequest {
 
     private Long scheduleId;
     private String name;
-    private List<TimeFrameDTO> unavailability;
+    private List<TimeFrameDTO> timeframes;
 }
