@@ -2,6 +2,7 @@ package pw.edu.pl.workscheduler.domain.commands;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import pw.edu.pl.workscheduler.infrastructure.controller.request.AddEmployeeRequest;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.AddEmployeeToScheduleRequest;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateScheduleRequest;
 
@@ -9,17 +10,22 @@ import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateSchedul
 public class CommandMapper {
 
     public static AddEmployeeToScheduleCommand toAddEmployeeToScheduleCommand(
-            AddEmployeeToScheduleRequest request) {
+        AddEmployeeToScheduleRequest request) {
         return new AddEmployeeToScheduleCommand(
-                request.getScheduleId(), request.getName(), request.getTimeframes());
+            request.getScheduleId(), request.getName(), request.getTimeframes());
+    }
+
+    public static AddEmployeeCommand toAddEmployeeCommand(AddEmployeeRequest request) {
+        return new AddEmployeeCommand(request.getName(), request.getTimeframes());
     }
 
     public static InitiateScheduleCommand toInitiateScheduleCommand(
-            InitiateScheduleRequest request) {
+        InitiateScheduleRequest request) {
         return new InitiateScheduleCommand(
-                request.getMonth(),
-                request.getStartTime(),
-                request.getEndTime(),
-                request.getShiftTimes());
+            request.getMonth(),
+            request.getStartTime(),
+            request.getEndTime(),
+            request.getShiftTimes(),
+            request.getEmployeeIds());
     }
 }

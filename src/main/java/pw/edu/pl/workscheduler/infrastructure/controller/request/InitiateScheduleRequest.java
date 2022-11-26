@@ -20,4 +20,6 @@ public class InitiateScheduleRequest {
 
     @JsonFormat(pattern = "HH:mm")
     private List<LocalTime> shiftTimes;
+
+    private List<Long> employeeIds;
 }

@@ -1,6 +1,8 @@
 package pw.edu.pl.workscheduler.domain;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
+import pw.edu.pl.workscheduler.domain.commands.AddEmployeeCommand;
 import pw.edu.pl.workscheduler.domain.commands.AddEmployeeToScheduleCommand;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
@@ -13,6 +15,14 @@ class EmployeeService {
     private final ScheduleOutputPort schedulePort;
     private final EmployeeOutputPort employeePort;
 
+    List<EmployeeDTO> getAllEmployees() {
+        return employeePort.getAllEmployees();
+    }
+
+    EmployeeDTO addEmployee(AddEmployeeCommand command) {
+        return employeePort.saveEmployee(getEmployeeDTO(command));
+    }
+
     ScheduleDTO addEmployeeToSchedule(AddEmployeeToScheduleCommand command) {
         EmployeeDTO employeeDTO = getEmployeeDTO(command);
 
@@ -22,11 +32,15 @@ class EmployeeService {
         return schedulePort.updateSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
     }
 
+    private EmployeeDTO getEmployeeDTO(AddEmployeeCommand command) {
+        return new EmployeeDTO(null, command.getName(), command.getTimeframes(), null);
+    }
+
     private EmployeeDTO getEmployeeDTO(AddEmployeeToScheduleCommand command) {
         EmployeeDTO employeeDTO = employeePort.getEmployeeByName(command.getName());
         if (employeeDTO == null) {
             employeeDTO =
-                    new EmployeeDTO(null, command.getName(), command.getUnavailability(), null);
+                new EmployeeDTO(null, command.getName(), command.getUnavailability(), null);
         } else {
             Employee employee = EmployeeDtoMapper.toEmployee(employeeDTO);
             employee.addToUnavailabilityList(

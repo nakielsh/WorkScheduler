@@ -19,7 +19,8 @@ class ScheduleConfiguration {
     }
 
     @Bean
-    ScheduleService scheduleService(ScheduleOutputPort scheduleOutputPort) {
-        return new ScheduleService(scheduleOutputPort);
+    ScheduleService scheduleService(ScheduleOutputPort scheduleOutputPort,
+        EmployeeOutputPort employeeOutputPort) {
+        return new ScheduleService(scheduleOutputPort, employeeOutputPort);
     }
 }
