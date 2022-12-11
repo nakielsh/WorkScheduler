@@ -16,7 +16,6 @@ class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort
     private final ShiftRepository shiftRepository;
     private final EmployeeRepository employeeRepository;
 
-
     @Override
     public ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO) {
         ScheduleEntity scheduleEntity = scheduleRepository.save(EntityMapper.toEntity(scheduleDTO));

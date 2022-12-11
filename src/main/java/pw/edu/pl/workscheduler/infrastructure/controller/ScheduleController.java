@@ -1,5 +1,8 @@
 package pw.edu.pl.workscheduler.infrastructure.controller;
 
+import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toAddEmployeeToScheduleCommand;
+import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toInitiateScheduleCommand;
+
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +15,6 @@ import pw.edu.pl.workscheduler.domain.commands.InitiateScheduleCommand;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.AddEmployeeToScheduleRequest;
 import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateScheduleRequest;
-
-import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toAddEmployeeToScheduleCommand;
-import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toInitiateScheduleCommand;
 
 @RestController
 @AllArgsConstructor
@@ -39,5 +39,10 @@ class ScheduleController {
         AddEmployeeToScheduleCommand command = toAddEmployeeToScheduleCommand(request);
 
         return scheduleFacade.addEmployeeToSchedule(command);
+    }
+
+    @GetMapping("schedule/{id}/generate")
+    ScheduleDTO generateSchedule(@PathVariable(name = "id") Long id) {
+        return scheduleFacade.generateSchedule(id);
     }
 }

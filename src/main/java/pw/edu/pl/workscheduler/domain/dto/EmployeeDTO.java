@@ -15,6 +15,4 @@ public class EmployeeDTO {
     private String name;
 
     private List<TimeFrameDTO> unavailabilityList;
-
-    private List<ShiftDTO> shifts;
 }

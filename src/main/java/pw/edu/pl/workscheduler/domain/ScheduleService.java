@@ -35,4 +35,10 @@ class ScheduleService {
             .toList();
     }
 
+    ScheduleDTO generateSchedule(Long scheduleId) {
+        Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
+        Schedule generatedSchedule = new BOE(schedule).generateSchedule();
+
+        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+    }
 }

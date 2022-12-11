@@ -28,6 +28,10 @@ public class ScheduleFacade {
         return scheduleService.getSchedule(scheduleId);
     }
 
+    public ScheduleDTO generateSchedule(Long scheduleId) {
+        return scheduleService.generateSchedule(scheduleId);
+    }
+
     public List<EmployeeDTO> getAllEmployees() {
         return employeeService.getAllEmployees();
     }

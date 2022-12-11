@@ -24,8 +24,7 @@ public class InMemoryEmployeeRepo implements EmployeeOutputPort {
                 new EmployeeDTO(
                         employees.size() + 1L,
                         employeeDTO.getName(),
-                        employeeDTO.getUnavailabilityList(),
-                        employeeDTO.getShifts());
+                        employeeDTO.getUnavailabilityList());
         employees.put(employeeToSave.getId(), employeeToSave);
         return employeeToSave;
     }

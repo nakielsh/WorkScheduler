@@ -24,8 +24,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 class ScheduleEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-yyyy")
     private YearMonth scheduleMonth;
@@ -33,10 +33,10 @@ class ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<ShiftDayEntity> shiftDays;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany // (cascade = CascadeType.MERGE)
     @JoinTable(
-        name = "EMPLOYEES_FOR_SCHEDULE",
-        joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
-        inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+            name = "EMPLOYEES_FOR_SCHEDULE",
+            joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
     private Collection<EmployeeEntity> employeeList;
 }
