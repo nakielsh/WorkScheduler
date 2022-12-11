@@ -1,10 +1,8 @@
 package pw.edu.pl.workscheduler.infrastructure.repository;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.time.YearMonth;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,10 +13,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.YearMonth;
-import java.util.Collection;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Table(name = "schedules")//name table as you would name a single row
+@Table(name = "schedule")//name table as you would name a single row
 @Entity
 @Data
 @AllArgsConstructor
@@ -34,10 +33,10 @@ class ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<ShiftDayEntity> shiftDays;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
-            name = "EMPLOYEES_FOR_SCHEDULE",
-            joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+        name = "EMPLOYEES_FOR_SCHEDULE",
+        joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
+        inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
     private Collection<EmployeeEntity> employeeList;
 }

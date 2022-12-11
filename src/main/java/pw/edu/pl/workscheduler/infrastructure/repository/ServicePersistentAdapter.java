@@ -1,12 +1,12 @@
 package pw.edu.pl.workscheduler.infrastructure.repository;
 
+import java.util.List;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.ports.EmployeeOutputPort;
 import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort;
-
-import java.util.Optional;
 
 @AllArgsConstructor
 class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort {
@@ -53,5 +53,16 @@ class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort
     public EmployeeDTO getEmployeeByName(String name) {
         Optional<EmployeeEntity> employeeEntity = employeeRepository.findFirstByName(name);
         return employeeEntity.map(EntityMapper::toEmployeeDTO).orElse(null);
+    }
+
+    @Override
+    public EmployeeDTO getEmployeeById(Long id) {
+        Optional<EmployeeEntity> employeeEntity = employeeRepository.findById(id);
+        return employeeEntity.map(EntityMapper::toEmployeeDTO).orElse(null);
+    }
+
+    @Override
+    public List<EmployeeDTO> getAllEmployees() {
+        return employeeRepository.findAll().stream().map(EntityMapper::toEmployeeDTO).toList();
     }
 }

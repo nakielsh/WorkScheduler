@@ -14,7 +14,7 @@ class EmployeeDtoMapper {
 
     public static EmployeeDTO toEmployeeDTO(Employee employee) {
         if (employee == null) {
-            return new EmployeeDTO(null, null, null, null);
+            return null;
         }
         return new EmployeeDTO(
             employee.getId(),

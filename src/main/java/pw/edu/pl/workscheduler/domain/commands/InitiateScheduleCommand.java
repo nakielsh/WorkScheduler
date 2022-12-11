@@ -19,4 +19,6 @@ public class InitiateScheduleCommand {
 
     @JsonFormat(pattern = "HH:mm")
     List<LocalTime> shiftTimes;
+
+    List<Long> employeeIds;
 }
