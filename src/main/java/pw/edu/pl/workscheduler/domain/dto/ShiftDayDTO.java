@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ShiftDayDTO {
 
+    private final Long id;
+
     private final LocalDate date;
     private final List<ShiftDTO> shiftsForADay;
 

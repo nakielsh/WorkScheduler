@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ShiftDTO {
 
+    private Long id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private EmployeeDTO employee;

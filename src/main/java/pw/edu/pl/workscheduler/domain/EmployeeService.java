@@ -33,14 +33,13 @@ class EmployeeService {
     }
 
     private EmployeeDTO getEmployeeDTO(AddEmployeeCommand command) {
-        return new EmployeeDTO(null, command.getName(), command.getTimeframes(), null);
+        return new EmployeeDTO(null, command.getName(), command.getTimeframes());
     }
 
     private EmployeeDTO getEmployeeDTO(AddEmployeeToScheduleCommand command) {
         EmployeeDTO employeeDTO = employeePort.getEmployeeByName(command.getName());
         if (employeeDTO == null) {
-            employeeDTO =
-                new EmployeeDTO(null, command.getName(), command.getUnavailability(), null);
+            employeeDTO = new EmployeeDTO(null, command.getName(), command.getUnavailability());
         } else {
             Employee employee = EmployeeDtoMapper.toEmployee(employeeDTO);
             employee.addToUnavailabilityList(

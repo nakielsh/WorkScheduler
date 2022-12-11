@@ -7,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
@@ -21,10 +21,11 @@ import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 class EmployeeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -34,6 +35,4 @@ class EmployeeEntity {
     @ManyToMany(mappedBy = "employeeList")
     private Collection<ScheduleEntity> schedules;
 
-    @OneToMany(mappedBy = "employee")
-    private Collection<ShiftEntity> shifts;
 }

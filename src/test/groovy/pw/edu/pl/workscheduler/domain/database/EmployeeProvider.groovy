@@ -20,8 +20,7 @@ trait EmployeeProvider {
                                 LocalDateTime.of(2022, 1, 1, 23, 0)
                         ),
                         new TimeFrameDTO(LocalDateTime.of(2022, 1, 2, 8, 0),
-                                LocalDateTime.of(2022, 1, 2, 16, 0))),
-                null)
+                                LocalDateTime.of(2022, 1, 2, 16, 0))))
     }
 
     EmployeeDTO employee2() {
@@ -29,8 +28,7 @@ trait EmployeeProvider {
                 2L,
                 "Test Employee 2",
                 List.of(new TimeFrameDTO(LocalDateTime.of(2022, 1, 4, 8, 0),
-                        LocalDateTime.of(2022, 1, 4, 23, 0))),
-                null)
+                        LocalDateTime.of(2022, 1, 4, 23, 0))))
     }
 
 

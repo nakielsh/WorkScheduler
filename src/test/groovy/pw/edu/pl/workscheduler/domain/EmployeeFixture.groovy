@@ -34,22 +34,19 @@ trait EmployeeFixture {
                                 LocalDateTime.of(2022, 1, 1, 23, 0)
                         ),
                         new TimeFrameDTO(LocalDateTime.of(2022, 1, 2, 8, 0),
-                                LocalDateTime.of(2022, 1, 2, 16, 0))),
-                null)
+                                LocalDateTime.of(2022, 1, 2, 16, 0))))
     }
 
     EmployeeDTO employeeDTOWithoutUnavailability() {
         new EmployeeDTO(
                 4L,
                 "Test Employee 2",
-                List.of(),
-                null)
+                List.of())
     }
 
     boolean isEmployeeDTOEqual(EmployeeDTO employeeDTO1, EmployeeDTO employeeDTO2) {
         return employeeDTO1.name == employeeDTO2.name &&
-                employeeDTO1.unavailabilityList == employeeDTO2.unavailabilityList &&
-                employeeDTO1.shifts == employeeDTO2.shifts
+                employeeDTO1.unavailabilityList == employeeDTO2.unavailabilityList
     }
 
 }

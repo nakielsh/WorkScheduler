@@ -17,11 +17,18 @@ import lombok.ToString;
 @Setter
 class ShiftDay {
 
+    private Long id;
     private LocalDate date;
     private List<Shift> shiftsForADay = new ArrayList<>();
 
     @JsonIgnore private LocalTime workStartTime = LocalTime.of(0, 0);
     @JsonIgnore private LocalTime workEndTime = LocalTime.of(23, 59);
+
+    public ShiftDay(long id, LocalDate date, List<Shift> shiftsForADay) {
+        this.id = id;
+        this.date = date;
+        this.shiftsForADay = shiftsForADay;
+    }
 
     public ShiftDay(
             LocalDate date, LocalTime startTime, LocalTime endTime, List<LocalTime> shifts) {
@@ -30,11 +37,6 @@ class ShiftDay {
         this.workEndTime = endTime;
         generateShifts(shifts);
     }
-
-    //    public ShiftDay(LocalDate date, List<LocalTime> shifts) {
-    //        this.date = date;
-    //        generateShifts(shifts);
-    //    }
 
     public ShiftDay(LocalDate date, List<Shift> shiftsForADay) {
         this.date = date;
@@ -59,5 +61,9 @@ class ShiftDay {
 
             shiftsForADay.add(new Shift(startTime, endTime));
         }
+    }
+
+    public boolean isWeekend() {
+        return date.getDayOfWeek().getValue() > 5;
     }
 }
