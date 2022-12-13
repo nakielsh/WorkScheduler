@@ -1,6 +1,7 @@
 package pw.edu.pl.workscheduler.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ class BOE {
 
     Schedule generateSchedule() {
         calculateMaxWorkingShifts();
-        getLeastAvailableEmployeeOverall();
         Shift leastWantedShift = getLeastWantedShift();
 
         while (leastWantedShift != null) {
@@ -23,6 +23,9 @@ class BOE {
 
             leastWantedShift = getLeastWantedShift();
         }
+
+        prettyPrintSchedule();
+        prettyPrintSchedule2();
 
         return schedule;
     }
@@ -44,14 +47,12 @@ class BOE {
 
     private Employee getLeastAvailableEmployeeAtShift(Shift shift) {
         return getEmployeesForShift(shift).stream()
-                .map(Employee::getAvailableShiftsNumber)
-                .min(Integer::compareTo)
+                .map(Employee::getAllShiftsLeft)
+                .max(Integer::compareTo)
                 .flatMap(
-                        min ->
+                        max ->
                                 getEmployeesForShift(shift).stream()
-                                        .filter(
-                                                employee ->
-                                                        employee.getAvailableShiftsNumber() == min)
+                                        .filter(employee -> employee.getAllShiftsLeft() == max)
                                         .findFirst())
                 .orElseThrow();
     }
@@ -81,20 +82,6 @@ class BOE {
                 .collect(Collectors.toList());
     }
 
-    private Employee getLeastAvailableEmployeeOverall() {
-        return schedule.getEmployeeList().stream()
-                .map(employee -> employee.calculateAvailability(getUnassignedShifts()))
-                .min(Integer::compareTo)
-                .flatMap(
-                        min ->
-                                schedule.getEmployeeList().stream()
-                                        .filter(
-                                                employee ->
-                                                        employee.getAvailableShiftsNumber() == min)
-                                        .findFirst())
-                .orElseThrow();
-    }
-
     private Shift getLeastWantedShift() {
         return getUnassignedShifts().stream()
                 .map(shift -> shift.calculatePossibleEmployees(schedule.getEmployeeList()))
@@ -121,5 +108,106 @@ class BOE {
                 .flatMap(shiftDay -> shiftDay.getShiftsForADay().stream())
                 .filter(shift -> !shift.isAssigned())
                 .collect(Collectors.toList());
+    }
+
+    private void prettyPrintSchedule() {
+
+        for (int i = 0; i < 6; i++) {
+            System.out.println();
+        }
+
+        System.out.print(" Employee  | ");
+
+        for (int i = 0; schedule.getShiftDays().size() > i; i++) {
+            System.out.print(schedule.getShiftDays().get(i).getDate() + " | ");
+        }
+
+        for (Employee employee : schedule.getEmployeeList()) {
+            String name = String.format("%10.10s", employee.getName());
+            System.out.println();
+            for (int i = 0; schedule.getShiftDays().size() >= i; i++) {
+                System.out.print("---------- | ");
+            }
+            System.out.println();
+            System.out.print(name + " | ");
+
+            for (ShiftDay shiftDay : schedule.getShiftDays()) {
+                if (shiftDay.isWeekend()) {
+                    System.out.print("     -     | ");
+                } else {
+                    String s = "";
+
+                    for (Shift shift : shiftDay.getShiftsForADay()) {
+                        if (shift.getEmployee() != null
+                                && Objects.equals(shift.getEmployee().getId(), employee.getId())) {
+                            s = s.concat("x");
+                        }
+                    }
+
+                    System.out.print(String.format("%10.10s", s) + " | ");
+                }
+            }
+        }
+    }
+
+    private void prettyPrintSchedule2() {
+
+        for (int i = 0; i < 6; i++) {
+            System.out.println();
+        }
+
+        System.out.print("   Shift   | ");
+
+        for (int i = 0; schedule.getShiftDays().size() > i; i++) {
+            System.out.print(schedule.getShiftDays().get(i).getDate() + " | ");
+        }
+
+        for (Shift shift : schedule.getShiftDays().get(0).getShiftsForADay()) {
+            String name =
+                    String.format(
+                            "%10.10s",
+                            shift.getStartTime().getHour()
+                                    + ":"
+                                    + shift.getStartTime().getMinute()
+                                    + "-"
+                                    + shift.getEndTime().getHour()
+                                    + ":"
+                                    + shift.getEndTime().getMinute());
+            System.out.println();
+            for (int i = 0; schedule.getShiftDays().size() >= i; i++) {
+                System.out.print("---------- | ");
+            }
+            System.out.println();
+            System.out.print(name + " | ");
+
+            for (ShiftDay shiftDay : schedule.getShiftDays()) {
+                if (shiftDay.isWeekend()) {
+                    System.out.print("     -     | ");
+                } else {
+
+                    Shift thisShift =
+                            shiftDay.getShiftsForADay().stream()
+                                    .filter(
+                                            shift1 ->
+                                                    shift1.getStartTime()
+                                                            .toLocalTime()
+                                                            .equals(
+                                                                    shift.getStartTime()
+                                                                            .toLocalTime()))
+                                    .findFirst()
+                                    .orElseThrow();
+
+                    if (shift.getEmployee() != null) {
+                        System.out.print(
+                                String.format("%10.10s", thisShift.getEmployee().getName())
+                                        + " | ");
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 6; i++) {
+            System.out.println();
+        }
     }
 }

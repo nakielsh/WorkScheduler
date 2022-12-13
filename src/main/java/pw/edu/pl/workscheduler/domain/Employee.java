@@ -30,6 +30,7 @@ class Employee {
 
     void addShift(Shift shift) {
         shifts.add(shift);
+        allShiftsLeft--;
     }
 
     int calculateAvailability(List<Shift> shifts) {
