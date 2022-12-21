@@ -1,9 +1,11 @@
 package pw.edu.pl.workscheduler.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -22,10 +24,12 @@ class BOE {
             addEmployeeToShift(leastAvailableEmployee, leastWantedShift.getId());
 
             leastWantedShift = getLeastWantedShift();
+            calculateAvailabilityOfEmployees();
         }
 
         prettyPrintSchedule();
         prettyPrintSchedule2();
+        printEmployeesReport();
 
         return schedule;
     }
@@ -46,15 +50,23 @@ class BOE {
     }
 
     private Employee getLeastAvailableEmployeeAtShift(Shift shift) {
+        int maxNoOfShiftsLeft = getMaxValueOfAllShiftsLeft(shift);
+
+        return streamEmployeesWithShiftsLeftEqualTo(maxNoOfShiftsLeft)
+                .min(Comparator.comparing(Employee::getAvailableShiftsNumber))
+                .orElseThrow();
+    }
+
+    private int getMaxValueOfAllShiftsLeft(Shift shift) {
         return getEmployeesForShift(shift).stream()
                 .map(Employee::getAllShiftsLeft)
                 .max(Integer::compareTo)
-                .flatMap(
-                        max ->
-                                getEmployeesForShift(shift).stream()
-                                        .filter(employee -> employee.getAllShiftsLeft() == max)
-                                        .findFirst())
                 .orElseThrow();
+    }
+
+    private Stream<Employee> streamEmployeesWithShiftsLeftEqualTo(int shiftsLeft) {
+        return schedule.getEmployeeList().stream()
+                .filter(employee -> employee.getAllShiftsLeft() == shiftsLeft);
     }
 
     private void addEmployeeToShift(Employee employee, long id) {
@@ -108,6 +120,12 @@ class BOE {
                 .flatMap(shiftDay -> shiftDay.getShiftsForADay().stream())
                 .filter(shift -> !shift.isAssigned())
                 .collect(Collectors.toList());
+    }
+
+    private void calculateAvailabilityOfEmployees() {
+        List<Shift> unassignedShifts = getUnassignedShifts();
+        schedule.getEmployeeList()
+                .forEach(employee -> employee.calculateAvailability(unassignedShifts));
     }
 
     private void prettyPrintSchedule() {
@@ -208,6 +226,16 @@ class BOE {
 
         for (int i = 0; i < 6; i++) {
             System.out.println();
+        }
+    }
+
+    private void printEmployeesReport() {
+        for (Employee employee : schedule.getEmployeeList()) {
+            System.out.println(
+                    employee.getName()
+                            + " has "
+                            + employee.getShifts().size()
+                            + " shifts assigned.");
         }
     }
 }

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
+@Slf4j
 class Employee {
 
     private Long id;
@@ -33,12 +35,18 @@ class Employee {
         allShiftsLeft--;
     }
 
-    int calculateAvailability(List<Shift> shifts) {
+    void calculateAvailability(List<Shift> shifts) {
+        int availability = 0;
         for (Shift shift : shifts) {
             if (shift.canBeAssigned(this)) {
-                availableShiftsNumber++;
+                availability++;
             }
         }
-        return availableShiftsNumber;
+        availableShiftsNumber = availability;
+        log.info(
+                "Employee {} : \navailable shifts = {} \nall shifts left = {}",
+                name,
+                availableShiftsNumber,
+                allShiftsLeft);
     }
 }
