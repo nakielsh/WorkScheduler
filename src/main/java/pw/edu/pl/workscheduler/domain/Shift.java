@@ -59,11 +59,13 @@ class Shift {
     }
 
     int calculatePossibleEmployees(List<Employee> employees) {
+        int tempPossibleEmployees = 0;
         for (Employee empl : employees) {
             if (canBeAssigned(empl)) {
-                possibleEmployees++;
+                tempPossibleEmployees++;
             }
         }
+        possibleEmployees = tempPossibleEmployees;
         return possibleEmployees;
     }
 
