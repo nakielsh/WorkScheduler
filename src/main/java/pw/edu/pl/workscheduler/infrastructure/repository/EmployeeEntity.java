@@ -34,5 +34,4 @@ class EmployeeEntity {
 
     @ManyToMany(mappedBy = "employeeList")
     private Collection<ScheduleEntity> schedules;
-
 }

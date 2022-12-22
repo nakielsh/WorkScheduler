@@ -39,6 +39,9 @@ class ScheduleService {
         Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
         Schedule generatedSchedule = new BOE(schedule).generateSchedule();
 
-        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+        ScheduleDTO scheduleDTO =
+                schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+
+        return scheduleDTO;
     }
 }

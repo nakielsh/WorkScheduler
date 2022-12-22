@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "schedule")//name table as you would name a single row
+@Table(name = "schedule") // name table as you would name a single row
 @Entity
 @Data
 @AllArgsConstructor

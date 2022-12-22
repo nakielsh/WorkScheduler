@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.time.YearMonth;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+@EqualsAndHashCode
 @JsonInclude(Include.NON_NULL)
 public class ScheduleDTO {
 

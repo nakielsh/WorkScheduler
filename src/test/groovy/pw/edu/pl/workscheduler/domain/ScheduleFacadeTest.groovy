@@ -1,5 +1,6 @@
 package pw.edu.pl.workscheduler.domain
 
+import pw.edu.pl.workscheduler.domain.commands.AddEmployeeCommand
 import pw.edu.pl.workscheduler.domain.database.EmployeeProvider
 import pw.edu.pl.workscheduler.domain.database.InMemoryEmployeeRepo
 import pw.edu.pl.workscheduler.domain.database.InMemoryScheduleRepo
@@ -20,7 +21,7 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
     @Subject
     private ScheduleFacade scheduleFacade = scheduleFacade()
 
-    def "should successfully  add employee with unavailability"() {
+    def "should successfully add employee with unavailability"() {
         given:
         EmployeeDTO employeeDTO = scheduleFacade.addEmployee(addEmployeeCommandWithUnavailability())
 
@@ -28,7 +29,7 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
         isEmployeeDTOEqual(employeeDTO, employeeDTOWithUnavailability())
     }
 
-    def "should successfully  add employee without unavailability"() {
+    def "should successfully add employee without unavailability"() {
         given:
         EmployeeDTO employeeDTO = scheduleFacade.addEmployee(addEmployeeCommandWithoutUnavailability())
 
@@ -48,7 +49,7 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
 
     def "should successfully initiate schedule"(int month, int daysNumber) {
         given:
-        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(month))
+        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(month, List.of(1L, 2L)))
 
         expect:
         scheduleDTO.month == YearMonth.of(2022, month) &&
@@ -68,13 +69,37 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
 
     def "should successfully initiate and retrieve schedule"() {
         given:
-        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(1))
+        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
 
         when:
         ScheduleDTO retrievedScheduleDTO = scheduleFacade.getSchedule(1L)
 
         then:
         isScheduleDTOEqual(scheduleDTO, retrievedScheduleDTO)
+    }
+
+    def "should generate schedule with empty days"() {
+        given:
+        addEmployees(addEmployeeCommandList())
+        scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(3L, 4L)))
+
+        when:
+        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(1L)
+
+        then:
+        generatedScheduleDTO.month == YearMonth.of(2022, 1) &&
+                generatedScheduleDTO.shiftDays.size() == 31 &&
+                generatedScheduleDTO.employeeList.size() == 2
+
+        and:
+        isEmployeeDTOEqual(generatedScheduleDTO.employeeList.get(0), employee1()) &&
+                isEmployeeDTOEqual(generatedScheduleDTO.employeeList.get(1), employee2())
+    }
+
+    private void addEmployees(List<AddEmployeeCommand> addEmployeeCommandList) {
+        addEmployeeCommandList.each {
+            scheduleFacade.addEmployee(it)
+        }
     }
 
     private ScheduleFacade scheduleFacade() {

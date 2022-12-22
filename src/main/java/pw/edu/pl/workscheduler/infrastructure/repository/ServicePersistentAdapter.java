@@ -3,6 +3,7 @@ package pw.edu.pl.workscheduler.infrastructure.repository;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.ports.EmployeeOutputPort;
@@ -36,6 +37,7 @@ class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort
     }
 
     @Override
+    @Transactional
     public ScheduleDTO getSchedule(Long scheduleId) {
         return EntityMapper.toScheduleDTO(
                 scheduleRepository.findById(scheduleId).orElseThrow(IllegalArgumentException::new));
