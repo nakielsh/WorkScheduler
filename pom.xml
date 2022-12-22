@@ -17,6 +17,17 @@
                 </configuration>
                 <groupId>org.springframework.boot</groupId>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Spec.java</include>
+                    </includes>
+                </configuration>
+                <version>2.22.2</version>
+            </plugin>
+
             <plugin>
                 <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
                 visit https://github.com/groovy/GMavenPlus/wiki -->
@@ -52,12 +63,19 @@
         </dependency>
 
         <dependency>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+
+        <dependency>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <groupId>org.springframework.boot</groupId>
         </dependency>
+
         <dependency>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <groupId>org.springframework.boot</groupId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -65,33 +83,47 @@
             <groupId>com.h2database</groupId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <artifactId>postgresql</artifactId>
             <groupId>org.postgresql</groupId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <groupId>org.springframework.boot</groupId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <artifactId>junit-jupiter-engine</artifactId>
             <groupId>org.junit.jupiter</groupId>
             <scope>test</scope>
             <version>5.7.0</version>
         </dependency>
+
         <dependency>
             <artifactId>spock-core</artifactId>
             <groupId>org.spockframework</groupId>
             <scope>test</scope>
             <version>2.3-groovy-4.0</version>
         </dependency>
+
+        <dependency>
+            <artifactId>spock-spring</artifactId>
+            <groupId>org.spockframework</groupId>
+            <scope>test</scope>
+            <version>2.3-groovy-4.0</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>postgresql</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <scope>test</scope>
+            <version>1.17.3</version>
+        </dependency>
+
         <dependency>
             <artifactId>groovy</artifactId>
             <groupId>org.apache.groovy</groupId>

@@ -8,7 +8,7 @@ import java.time.YearMonth
 
 trait ScheduleFixture {
 
-    InitiateScheduleCommand initiateScheduleCommand(int month) {
+    InitiateScheduleCommand initiateScheduleCommand(int month, List<Long> employeeIds) {
         new InitiateScheduleCommand(
                 YearMonth.of(2022, month),
                 LocalTime.of(8, 0),

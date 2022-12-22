@@ -17,11 +17,14 @@ class BOE {
 
     Schedule generateSchedule() {
         calculateMaxWorkingShifts();
+        calculateAvailabilityOfEmployees();
         Shift leastWantedShift = getLeastWantedShift();
 
         while (leastWantedShift != null) {
             Employee leastAvailableEmployee = getLeastAvailableEmployeeAtShift(leastWantedShift);
-            addEmployeeToShift(leastAvailableEmployee, leastWantedShift.getId());
+            if (leastAvailableEmployee != null) {
+                addEmployeeToShift(leastAvailableEmployee, leastWantedShift.getId());
+            }
 
             leastWantedShift = getLeastWantedShift();
             calculateAvailabilityOfEmployees();
@@ -50,9 +53,15 @@ class BOE {
     }
 
     private Employee getLeastAvailableEmployeeAtShift(Shift shift) {
-        int maxNoOfShiftsLeft = getMaxValueOfAllShiftsLeft(shift);
+        int maxNoOfShiftsLeft = 0;
+        try {
+            maxNoOfShiftsLeft = getMaxValueOfAllShiftsLeft(shift);
+        } catch (IllegalStateException e) {
+            return null;
+        }
 
         return streamEmployeesWithShiftsLeftEqualTo(maxNoOfShiftsLeft)
+                .filter(employee -> employee.getAvailableShiftsNumber() > 0)
                 .min(Comparator.comparing(Employee::getAvailableShiftsNumber))
                 .orElseThrow();
     }
@@ -61,7 +70,7 @@ class BOE {
         return getEmployeesForShift(shift).stream()
                 .map(Employee::getAllShiftsLeft)
                 .max(Integer::compareTo)
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalStateException("No employees for shift"));
     }
 
     private Stream<Employee> streamEmployeesWithShiftsLeftEqualTo(int shiftsLeft) {
@@ -97,6 +106,7 @@ class BOE {
     private Shift getLeastWantedShift() {
         return getUnassignedShifts().stream()
                 .map(shift -> shift.calculatePossibleEmployees(schedule.getEmployeeList()))
+                .filter(value -> value > 0)
                 .min(Integer::compareTo)
                 .flatMap(
                         min ->
@@ -104,7 +114,7 @@ class BOE {
                                         .filter(
                                                 shift ->
                                                         shift.getPossibleEmployees() == min
-                                                                || shift.getPossibleEmployees()
+                                                                && shift.getPossibleEmployees()
                                                                         != 0)
                                         .findFirst())
                 .orElse(null);
@@ -215,10 +225,12 @@ class BOE {
                                     .findFirst()
                                     .orElseThrow();
 
-                    if (shift.getEmployee() != null) {
+                    if (thisShift.getEmployee() != null) {
                         System.out.print(
                                 String.format("%10.10s", thisShift.getEmployee().getName())
                                         + " | ");
+                    } else {
+                        System.out.print("           | ");
                     }
                 }
             }
