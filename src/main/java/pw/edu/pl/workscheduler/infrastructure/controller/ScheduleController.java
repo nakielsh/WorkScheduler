@@ -26,7 +26,7 @@ class ScheduleController {
     // @TODO add new employee to generated schedule
     // @TODO exchange existing employee in shift
 
-    // @TODO get all shifts endpoint
+    // @TODO get all schedules endpoint
 
     private final ScheduleFacade scheduleFacade;
 
