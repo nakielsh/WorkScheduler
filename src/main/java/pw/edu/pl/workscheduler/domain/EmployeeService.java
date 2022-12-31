@@ -33,7 +33,7 @@ class EmployeeService {
     }
 
     private EmployeeDTO getEmployeeDTO(AddEmployeeCommand command) {
-        return new EmployeeDTO(null, command.getName(), command.getTimeframes());
+        return new EmployeeDTO(null, command.getName(), command.getUnavailability());
     }
 
     private EmployeeDTO getEmployeeDTO(AddEmployeeToScheduleCommand command) {

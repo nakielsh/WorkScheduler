@@ -45,12 +45,12 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
         employeeDTOList.contains(employee2())
     }
 
-    def "should successfully initiate schedule"(int month, int daysNumber) {
+    def "should successfully generate schedule for different months"(int month, int daysNumber) {
         given:
         addEmployees1(List.of(employee1(), employee2()))
 
         when:
-        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(month, List.of(1L, 2L)))
+        ScheduleDTO scheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(month, List.of(1L, 2L)))
 
         then:
         scheduleDTO.month == YearMonth.of(2022, month) &&
@@ -68,15 +68,15 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
         4     | 30
     }
 
-    def "should successfully initiate and retrieve schedule"() {
+    def "should successfully generate and retrieve schedule"() {
         given:
         addEmployees1(List.of(employee1(), employee2()))
 
         and:
-        def scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
+        def scheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
 
         when:
-        def retrievedScheduleDTO = scheduleFacade.getSchedule(1L)
+        def retrievedScheduleDTO = scheduleFacade.getSchedule(scheduleDTO.id)
 
         then:
         isScheduleDTOEqual(scheduleDTO, retrievedScheduleDTO)
@@ -86,11 +86,8 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
         given:
         addEmployees1(employeesForScheduleWithAllDays())
 
-        and:
-        scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(1L, 1L)))
-
         when:
-        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(1L)
+        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 1L)))
 
         then:
         generatedScheduleDTO.month == YearMonth.of(2022, 1) &&
@@ -106,11 +103,8 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
         given:
         addEmployees1(employeesForScheduleWithEmptyDays())
 
-        and:
-        scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(1L, 1L)))
-
         when:
-        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(1L)
+        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 1L)))
 
         then:
         generatedScheduleDTO.month == YearMonth.of(2022, 1) &&

@@ -20,16 +20,24 @@ import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateSchedul
 @AllArgsConstructor
 class ScheduleController {
 
+    // @TODO add empty days to scheduleDTO
+    // @TODO add summary of number of workingSchedules in EmployeeDTO
+
+    // @TODO add new employee to generated schedule
+    // @TODO exchange existing employee in shift
+
+    // @TODO get all shifts endpoint
+
     private final ScheduleFacade scheduleFacade;
 
-    @PostMapping
-    ScheduleDTO initiateSchedule(@RequestBody InitiateScheduleRequest request) {
+    @PostMapping("/schedule/generate")
+    ScheduleDTO generateSchedule(@RequestBody InitiateScheduleRequest request) {
         InitiateScheduleCommand command = toInitiateScheduleCommand(request);
 
-        return scheduleFacade.initializeSchedule(command);
+        return scheduleFacade.generateSchedule(command);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/schedule/{id}")
     ScheduleDTO getSchedule(@PathVariable(name = "id") Long id) {
         return scheduleFacade.getSchedule(id);
     }
@@ -39,10 +47,5 @@ class ScheduleController {
         AddEmployeeToScheduleCommand command = toAddEmployeeToScheduleCommand(request);
 
         return scheduleFacade.addEmployeeToSchedule(command);
-    }
-
-    @GetMapping("schedule/{id}/generate")
-    ScheduleDTO generateSchedule(@PathVariable(name = "id") Long id) {
-        return scheduleFacade.generateSchedule(id);
     }
 }

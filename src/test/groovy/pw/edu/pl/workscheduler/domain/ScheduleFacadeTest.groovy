@@ -47,9 +47,9 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
         isEmployeeDTOEqual(employeeDTOList.get(1), employee2())
     }
 
-    def "should successfully initiate schedule"(int month, int daysNumber) {
+    def "should successfully generate schedule for different months"(int month, int daysNumber) {
         given:
-        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(month, List.of(1L, 2L)))
+        ScheduleDTO scheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(month, List.of(1L, 2L)))
 
         expect:
         scheduleDTO.month == YearMonth.of(2022, month) &&
@@ -67,12 +67,12 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
         4     | 30
     }
 
-    def "should successfully initiate and retrieve schedule"() {
+    def "should successfully generate and retrieve schedule"() {
         given:
-        ScheduleDTO scheduleDTO = scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
+        ScheduleDTO scheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
 
         when:
-        ScheduleDTO retrievedScheduleDTO = scheduleFacade.getSchedule(1L)
+        ScheduleDTO retrievedScheduleDTO = scheduleFacade.getSchedule(scheduleDTO.id)
 
         then:
         isScheduleDTOEqual(scheduleDTO, retrievedScheduleDTO)
@@ -81,10 +81,9 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
     def "should generate schedule with empty days"() {
         given:
         addEmployees(addEmployeeCommandList())
-        scheduleFacade.initializeSchedule(initiateScheduleCommand(1, List.of(3L, 4L)))
 
         when:
-        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(1L)
+        ScheduleDTO generatedScheduleDTO = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(3L, 4L)))
 
         then:
         generatedScheduleDTO.month == YearMonth.of(2022, 1) &&
