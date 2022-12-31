@@ -16,7 +16,7 @@ public class CommandMapper {
     }
 
     public static AddEmployeeCommand toAddEmployeeCommand(AddEmployeeRequest request) {
-        return new AddEmployeeCommand(request.getName(), request.getTimeframes());
+        return new AddEmployeeCommand(request.getName(), request.getUnavailability());
     }
 
     public static InitiateScheduleCommand toInitiateScheduleCommand(

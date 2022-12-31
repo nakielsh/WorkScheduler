@@ -8,5 +8,5 @@ import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 public class AddEmployeeCommand {
 
     String name;
-    List<TimeFrameDTO> timeframes;
+    List<TimeFrameDTO> unavailability;
 }

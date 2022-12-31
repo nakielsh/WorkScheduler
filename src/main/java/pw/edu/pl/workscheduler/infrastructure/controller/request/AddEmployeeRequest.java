@@ -8,5 +8,5 @@ import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO;
 public class AddEmployeeRequest {
 
     private String name;
-    private List<TimeFrameDTO> timeframes;
+    private List<TimeFrameDTO> unavailability;
 }

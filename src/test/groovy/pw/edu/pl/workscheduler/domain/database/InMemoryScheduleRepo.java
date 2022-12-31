@@ -11,6 +11,7 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
 
     @Override
     public ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO) {
+        setIds(scheduleDTO);
         ScheduleDTO scheduleToSave =
                 new ScheduleDTO(
                         schedules.size() + 1L,
@@ -19,6 +20,23 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
                         scheduleDTO.getEmployeeList());
         schedules.put(scheduleToSave.getId(), scheduleToSave);
         return scheduleToSave;
+    }
+
+    private void setIds(ScheduleDTO scheduleDTO) {
+        for (int i = 0; i < scheduleDTO.getShiftDays().size(); i++) {
+            scheduleDTO.getShiftDays().get(i).setId((long) i);
+            for (int j = 0; j < scheduleDTO.getShiftDays().get(i).getShiftsForADay().size(); j++) {
+                scheduleDTO
+                        .getShiftDays()
+                        .get(i)
+                        .getShiftsForADay()
+                        .get(j)
+                        .setId(
+                                (long) scheduleDTO.getShiftDays().get(0).getShiftsForADay().size()
+                                                * i
+                                        + j);
+            }
+        }
     }
 
     @Override

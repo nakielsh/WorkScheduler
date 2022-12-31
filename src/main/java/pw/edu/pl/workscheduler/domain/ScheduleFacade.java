@@ -20,17 +20,18 @@ public class ScheduleFacade {
         return employeeService.addEmployeeToSchedule(command);
     }
 
-    public ScheduleDTO initializeSchedule(InitiateScheduleCommand command) {
-        return scheduleService.initializeSchedule(command);
+    public ScheduleDTO generateSchedule(InitiateScheduleCommand command) {
+        ScheduleDTO initializedSchedule = scheduleService.initializeSchedule(command);
+        return scheduleService.generateSchedule(initializedSchedule.getId());
     }
 
     public ScheduleDTO getSchedule(Long scheduleId) {
         return scheduleService.getSchedule(scheduleId);
     }
 
-    public ScheduleDTO generateSchedule(Long scheduleId) {
-        return scheduleService.generateSchedule(scheduleId);
-    }
+    //    public ScheduleDTO generateSchedule(Long scheduleId) {
+    //        return scheduleService.generateSchedule(scheduleId);
+    //    }
 
     public List<EmployeeDTO> getAllEmployees() {
         return employeeService.getAllEmployees();

@@ -8,14 +8,16 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @EqualsAndHashCode
 @RequiredArgsConstructor
 public class ShiftDayDTO {
 
-    private final Long id;
+    private Long id;
 
     private final LocalDate date;
     private final List<ShiftDTO> shiftsForADay;
@@ -23,4 +25,10 @@ public class ShiftDayDTO {
     @JsonIgnore private LocalTime workStartTime;
 
     @JsonIgnore private LocalTime workEndTime;
+
+    public ShiftDayDTO(Long id, LocalDate date, List<ShiftDTO> shiftsForADay) {
+        this.id = id;
+        this.date = date;
+        this.shiftsForADay = shiftsForADay;
+    }
 }
