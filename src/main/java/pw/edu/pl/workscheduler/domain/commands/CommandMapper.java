@@ -12,7 +12,7 @@ public class CommandMapper {
     public static AddEmployeeToScheduleCommand toAddEmployeeToScheduleCommand(
         AddEmployeeToScheduleRequest request) {
         return new AddEmployeeToScheduleCommand(
-            request.getScheduleId(), request.getName(), request.getTimeframes());
+                request.getScheduleId(), request.getName(), request.getUnavailability());
     }
 
     public static AddEmployeeCommand toAddEmployeeCommand(AddEmployeeRequest request) {
@@ -27,5 +27,9 @@ public class CommandMapper {
             request.getEndTime(),
             request.getShiftTimes(),
             request.getEmployeeIds());
+    }
+
+    public static AddEmployeeCommand toAddEmployeeCommand(AddEmployeeToScheduleCommand command) {
+        return new AddEmployeeCommand(command.getName(), command.getUnavailability());
     }
 }

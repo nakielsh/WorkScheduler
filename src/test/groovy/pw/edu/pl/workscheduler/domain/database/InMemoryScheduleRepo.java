@@ -1,6 +1,7 @@
 package pw.edu.pl.workscheduler.domain.database;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
 import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort;
@@ -12,12 +13,18 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
     @Override
     public ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO) {
         setIds(scheduleDTO);
-        ScheduleDTO scheduleToSave =
-                new ScheduleDTO(
-                        schedules.size() + 1L,
-                        scheduleDTO.getMonth(),
-                        scheduleDTO.getShiftDays(),
-                        scheduleDTO.getEmployeeList());
+        ScheduleDTO scheduleToSave;
+
+        if (scheduleDTO.getId() != null) {
+            scheduleToSave = scheduleDTO;
+        } else {
+            scheduleToSave =
+                    new ScheduleDTO(
+                            schedules.size() + 1L,
+                            scheduleDTO.getMonth(),
+                            scheduleDTO.getShiftDays(),
+                            scheduleDTO.getEmployeeList());
+        }
         schedules.put(scheduleToSave.getId(), scheduleToSave);
         return scheduleToSave;
     }
@@ -48,5 +55,10 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
     @Override
     public ScheduleDTO getSchedule(Long scheduleId) {
         return schedules.get(scheduleId);
+    }
+
+    @Override
+    public List<ScheduleDTO> getAllSchedules() {
+        return schedules.values().stream().toList();
     }
 }

@@ -44,6 +44,11 @@ class ServicePersistentAdapter implements ScheduleOutputPort, EmployeeOutputPort
     }
 
     @Override
+    public List<ScheduleDTO> getAllSchedules() {
+        return scheduleRepository.findAll().stream().map(EntityMapper::toScheduleDTO).toList();
+    }
+
+    @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
         EmployeeEntity employeeEntity = employeeRepository.save(EntityMapper.toEntity(employeeDTO));
 

@@ -28,6 +28,10 @@ class ScheduleService {
         return schedulePort.getSchedule(scheduleId);
     }
 
+    List<ScheduleDTO> getAllSchedules() {
+        return schedulePort.getAllSchedules();
+    }
+
     private List<Employee> getEmployeesFromId(List<Long> employeeIds) {
         return employeeIds.stream()
             .map(employeePort::getEmployeeById)
@@ -39,9 +43,13 @@ class ScheduleService {
         Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
         Schedule generatedSchedule = new BOE(schedule).generateSchedule();
 
-        ScheduleDTO scheduleDTO =
-                schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+    }
 
-        return scheduleDTO;
+    ScheduleDTO addEmployeeToSchedule(Long scheduleId, Long employeeId) {
+        Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
+        Employee employee = EmployeeDtoMapper.toEmployee(employeePort.getEmployeeById(employeeId));
+        schedule.addEmployee(employee);
+        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
     }
 }
