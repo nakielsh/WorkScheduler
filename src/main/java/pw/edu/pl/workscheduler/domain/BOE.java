@@ -33,6 +33,7 @@ class BOE {
         prettyPrintSchedule();
         prettyPrintSchedule2();
         printEmployeesReport();
+        printEmptyDays();
 
         return schedule;
     }
@@ -100,12 +101,19 @@ class BOE {
     private List<Employee> getEmployeesForShift(Shift shift) {
         return schedule.getEmployeeList().stream()
                 .filter(shift::canBeAssigned)
+                .filter(employee -> !isEmployeeAlreadyWorkingThisDay(employee, shift))
                 .collect(Collectors.toList());
+    }
+
+    private boolean isEmployeeAlreadyWorkingThisDay(Employee employee, Shift shift) {
+        int dayOfMonth = shift.getStartTime().getDayOfMonth();
+        return employee.getShifts().stream()
+                .anyMatch(shift1 -> shift1.getStartTime().getDayOfMonth() == dayOfMonth);
     }
 
     private Shift getLeastWantedShift() {
         return getUnassignedShifts().stream()
-                .map(shift -> shift.calculatePossibleEmployees(schedule.getEmployeeList()))
+                .map(shift -> shift.calculatePossibleEmployees(getEmployeesForShift(shift)))
                 .filter(value -> value > 0)
                 .min(Integer::compareTo)
                 .flatMap(
@@ -248,6 +256,23 @@ class BOE {
                             + " has "
                             + employee.getShifts().size()
                             + " shifts assigned.");
+        }
+    }
+
+    private void printEmptyDays() {
+        System.out.println("Empty shifts:");
+        for (ShiftDay shiftDay : schedule.getShiftDays()) {
+            if (shiftDay.isWeekend()) {
+                continue;
+            }
+            if (!shiftDay.getShiftsForADay().stream().allMatch(Shift::isAssigned)) {
+                shiftDay.getShiftsForADay().stream()
+                        .filter(shift -> !shift.isAssigned())
+                        .forEach(
+                                shift ->
+                                        System.out.println(
+                                                shift.getStartTime() + " - " + shift.getEndTime()));
+            }
         }
     }
 }
