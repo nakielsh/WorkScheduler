@@ -9,5 +9,5 @@ public class AddEmployeeToScheduleRequest {
 
     private Long scheduleId;
     private String name;
-    private List<TimeFrameDTO> timeframes;
+    private List<TimeFrameDTO> unavailability;
 }

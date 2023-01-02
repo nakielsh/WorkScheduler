@@ -116,6 +116,36 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
 
     }
 
+    def "should retrieve all schedules"() {
+        given:
+        addEmployees1(employeeDTOList())
+        def schedule1 = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
+        def schedule2 = scheduleFacade.generateSchedule(initiateScheduleCommand(2, List.of(1L)))
+
+        when:
+        List<ScheduleDTO> scheduleDTOList = scheduleFacade.getAllSchedules()
+
+        then:
+        scheduleDTOList.size() == 2
+        isScheduleDTOEqual(scheduleDTOList.get(0), schedule1)
+        isScheduleDTOEqual(scheduleDTOList.get(1), schedule2)
+    }
+
+    def "should add employee to existing schedule"() {
+        given:
+        addEmployees1(employeeDTOList())
+        def schedule = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
+
+        when:
+        def updatedSchedule = scheduleFacade.addEmployeeToSchedule(addEmployeeToScheduleCommand(schedule.id))
+
+        then:
+        updatedSchedule.employeeList.size() == 3
+        isEmployeeDTOEqual(updatedSchedule.employeeList.get(0), employee1())
+        isEmployeeDTOEqual(updatedSchedule.employeeList.get(1), employee2())
+        isEmployeeDTOEqual(updatedSchedule.employeeList.get(2), employeeDTOWithoutUnavailability())
+    }
+
     def allShiftsAreTaken(ScheduleDTO scheduleDTO) {
         boolean allShiftsAreTaken = true
         scheduleDTO.shiftDays.each { shiftDay ->

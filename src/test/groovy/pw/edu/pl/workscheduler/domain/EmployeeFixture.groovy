@@ -1,6 +1,7 @@
 package pw.edu.pl.workscheduler.domain
 
 import pw.edu.pl.workscheduler.domain.commands.AddEmployeeCommand
+import pw.edu.pl.workscheduler.domain.commands.AddEmployeeToScheduleCommand
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO
 import pw.edu.pl.workscheduler.domain.dto.TimeFrameDTO
 
@@ -21,7 +22,7 @@ trait EmployeeFixture {
 
     AddEmployeeCommand addEmployeeCommandWithoutUnavailability() {
         new AddEmployeeCommand(
-                "Test Employee 2",
+                "Test Employee available",
                 List.of())
     }
 
@@ -83,8 +84,15 @@ trait EmployeeFixture {
     EmployeeDTO employeeDTOWithoutUnavailability() {
         new EmployeeDTO(
                 4L,
-                "Test Employee 2",
+                "Test Employee available",
                 List.of())
+    }
+
+    AddEmployeeToScheduleCommand addEmployeeToScheduleCommand(long id) {
+        new AddEmployeeToScheduleCommand(
+                id,
+                addEmployeeCommandWithoutUnavailability().name,
+                addEmployeeCommandWithoutUnavailability().unavailability)
     }
 
     boolean isEmployeeDTOEqual(EmployeeDTO employeeDTO1, EmployeeDTO employeeDTO2) {
