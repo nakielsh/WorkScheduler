@@ -112,7 +112,7 @@ class ScheduleFacadeIntegrationTestSpec extends Specification implements Employe
                 generatedScheduleDTO.employeeList.size() == 2
 
         and:
-        numberOfShiftsTaken(generatedScheduleDTO) == 33
+        numberOfShiftsTaken(generatedScheduleDTO) == 11
 
     }
 

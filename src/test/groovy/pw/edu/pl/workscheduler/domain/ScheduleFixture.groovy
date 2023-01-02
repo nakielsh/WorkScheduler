@@ -2,6 +2,8 @@ package pw.edu.pl.workscheduler.domain
 
 import pw.edu.pl.workscheduler.domain.commands.InitiateScheduleCommand
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO
+import pw.edu.pl.workscheduler.domain.dto.ShiftDTO
+import pw.edu.pl.workscheduler.domain.dto.ShiftDayDTO
 
 import java.time.LocalTime
 import java.time.YearMonth
@@ -19,6 +21,11 @@ trait ScheduleFixture {
     }
 
     boolean isScheduleDTOEqual(ScheduleDTO scheduleDTO1, ScheduleDTO scheduleDTO2) {
+        scheduleDTO1.shiftDays.sort(Comparator.comparing(ShiftDayDTO::getId))
+        scheduleDTO2.shiftDays.sort(Comparator.comparing(ShiftDayDTO::getId))
+
+        scheduleDTO1.shiftDays.each { day -> day.getShiftsForADay().sort(Comparator.comparing(ShiftDTO::getId)) }
+        scheduleDTO2.shiftDays.each { day -> day.getShiftsForADay().sort(Comparator.comparing(ShiftDTO::getId)) }
         return scheduleDTO1.id == scheduleDTO2.id &&
                 scheduleDTO1.month == scheduleDTO2.month &&
                 scheduleDTO1.shiftDays == scheduleDTO2.shiftDays &&
