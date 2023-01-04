@@ -19,37 +19,55 @@ class ScheduleService {
         schedule.setMonth(command.getMonth());
         schedule.setEmployeeList(getEmployeesFromId(command.getEmployeeIds()));
         schedule.generateShiftDays(
-            command.getStartTime(), command.getEndTime(), command.getShiftTimes());
+                command.getStartTime(), command.getEndTime(), command.getShiftTimes());
 
         return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
     }
 
     ScheduleDTO getSchedule(Long scheduleId) {
-        return schedulePort.getSchedule(scheduleId);
+        ScheduleDTO scheduleDTO = schedulePort.getSchedule(scheduleId);
+        Schedule retrievedSchedule = ScheduleDtoMapper.toSchedule(scheduleDTO);
+        return ScheduleDtoMapper.toScheduleDTO(retrievedSchedule);
     }
 
     List<ScheduleDTO> getAllSchedules() {
-        return schedulePort.getAllSchedules();
+        List<ScheduleDTO> scheduleDTOs = schedulePort.getAllSchedules();
+
+        scheduleDTOs =
+                scheduleDTOs.stream()
+                        .map(ScheduleDtoMapper::toSchedule)
+                        .map(ScheduleDtoMapper::toScheduleDTO)
+                        .toList();
+
+        return scheduleDTOs;
     }
 
     private List<Employee> getEmployeesFromId(List<Long> employeeIds) {
         return employeeIds.stream()
-            .map(employeePort::getEmployeeById)
-            .map(EmployeeDtoMapper::toEmployee)
-            .toList();
+                .map(employeePort::getEmployeeById)
+                .map(EmployeeDtoMapper::toEmployee)
+                .toList();
     }
 
     ScheduleDTO generateSchedule(Long scheduleId) {
         Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
         Schedule generatedSchedule = new BOE(schedule).generateSchedule();
 
-        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+        ScheduleDTO scheduleDTO =
+                schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(generatedSchedule));
+        generatedSchedule = ScheduleDtoMapper.toSchedule(scheduleDTO);
+
+        return ScheduleDtoMapper.toScheduleDTO(generatedSchedule);
     }
 
     ScheduleDTO addEmployeeToSchedule(Long scheduleId, Long employeeId) {
         Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
         Employee employee = EmployeeDtoMapper.toEmployee(employeePort.getEmployeeById(employeeId));
         schedule.addEmployee(employee);
-        return schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
+
+        ScheduleDTO scheduleDTO =
+                schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
+        schedule = ScheduleDtoMapper.toSchedule(scheduleDTO);
+        return ScheduleDtoMapper.toScheduleDTO(schedule);
     }
 }

@@ -22,6 +22,22 @@ class EmployeeDtoMapper {
                         .collect(Collectors.toList()));
     }
 
+    public static EmployeeDTO toEmployeeDTO(Employee employee, Schedule schedule) {
+        if (employee == null) {
+            return null;
+        }
+        EmployeeDTO employeeDTO =
+                new EmployeeDTO(
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getUnavailabilityList().stream()
+                                .map(EmployeeDtoMapper::toTimeFrameDTO)
+                                .collect(Collectors.toList()));
+        int numberOfWorkingShifts = schedule.countWorkingShiftsForEmployee(employee);
+        employeeDTO.setNumberOfShifts(numberOfWorkingShifts);
+        return employeeDTO;
+    }
+
     public static Employee toEmployee(EmployeeDTO employeeDTO) {
 
         if (employeeDTO == null) {
