@@ -1,14 +1,13 @@
 package pw.edu.pl.workscheduler.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -21,8 +20,7 @@ class Schedule {
     private List<ShiftDay> shiftDays = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
 
-    void generateShiftDays(
-            LocalTime startTime, LocalTime endTime, List<LocalTime> shiftTimes) {
+    void generateShiftDays(LocalTime startTime, LocalTime endTime, List<LocalTime> shiftTimes) {
         for (int i = 0; i < month.lengthOfMonth(); i++) {
             shiftDays.add(
                     new ShiftDay(
@@ -43,6 +41,32 @@ class Schedule {
         } else {
             employeeList.add(employee);
         }
+    }
+
+    int countWorkingShiftsForEmployee(Employee employee) {
+        int workingShifts = 0;
+        for (ShiftDay shiftDay : shiftDays) {
+            for (Shift shift : shiftDay.getShiftsForADay()) {
+                if (shift.getEmployee() != null
+                        && shift.getEmployee().getId().equals(employee.getId())) {
+                    workingShifts++;
+                }
+            }
+        }
+
+        return workingShifts;
+    }
+
+    List<Long> getEmptyShifts() {
+        List<Long> emptyShifts = new ArrayList<>();
+        for (ShiftDay shiftDay : shiftDays) {
+            for (Shift shift : shiftDay.getShiftsForADay()) {
+                if (shift.getEmployee() == null) {
+                    emptyShifts.add(shift.getId());
+                }
+            }
+        }
+        return emptyShifts;
     }
 
     private boolean isEmployeeInTheList(Employee employee) {

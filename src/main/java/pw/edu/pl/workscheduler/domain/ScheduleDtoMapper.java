@@ -10,15 +10,22 @@ import pw.edu.pl.workscheduler.domain.dto.ShiftDayDTO;
 class ScheduleDtoMapper {
 
     public static ScheduleDTO toScheduleDTO(Schedule schedule) {
-        return new ScheduleDTO(
-                schedule.getId(),
-                schedule.getMonth(),
-                schedule.getShiftDays().stream()
-                        .map(ScheduleDtoMapper::toShiftDayDTO)
-                        .collect(Collectors.toList()),
-                schedule.getEmployeeList().stream()
-                        .map(EmployeeDtoMapper::toEmployeeDTO)
-                        .collect(Collectors.toList()));
+        ScheduleDTO scheduleDTO =
+                new ScheduleDTO(
+                        schedule.getId(),
+                        schedule.getMonth(),
+                        schedule.getShiftDays().stream()
+                                .map(ScheduleDtoMapper::toShiftDayDTO)
+                                .collect(Collectors.toList()),
+                        schedule.getEmployeeList().stream()
+                                .map(
+                                        employee ->
+                                                EmployeeDtoMapper.toEmployeeDTO(employee, schedule))
+                                .collect(Collectors.toList()));
+
+        scheduleDTO.setEmptyShifts(schedule.getEmptyShifts());
+
+        return scheduleDTO;
     }
 
     public static Schedule toSchedule(ScheduleDTO scheduleDTO) {

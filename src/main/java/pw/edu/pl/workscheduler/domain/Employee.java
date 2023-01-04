@@ -1,5 +1,6 @@
 package pw.edu.pl.workscheduler.domain;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -48,5 +49,16 @@ class Employee {
                 name,
                 availableShiftsNumber,
                 allShiftsLeft);
+    }
+
+    int getNumberOfWorkingShifts(YearMonth month) {
+        allShiftsLeft = 0;
+        for (Shift shift : shifts) {
+            if (shift.getStartTime().getMonth().equals(month.getMonth())
+                    && shift.getStartTime().getYear() == month.getYear()) {
+                allShiftsLeft++;
+            }
+        }
+        return allShiftsLeft;
     }
 }
