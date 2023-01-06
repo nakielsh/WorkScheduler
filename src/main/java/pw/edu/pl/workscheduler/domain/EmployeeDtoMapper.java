@@ -19,7 +19,8 @@ class EmployeeDtoMapper {
                 employee.getName(),
                 employee.getUnavailabilityList().stream()
                         .map(EmployeeDtoMapper::toTimeFrameDTO)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                employee.getWorkingDays());
     }
 
     public static EmployeeDTO toEmployeeDTO(Employee employee, Schedule schedule) {
@@ -32,9 +33,11 @@ class EmployeeDtoMapper {
                         employee.getName(),
                         employee.getUnavailabilityList().stream()
                                 .map(EmployeeDtoMapper::toTimeFrameDTO)
-                                .collect(Collectors.toList()));
+                                .collect(Collectors.toList()),
+                        employee.getWorkingDays());
         int numberOfWorkingShifts = schedule.countWorkingShiftsForEmployee(employee);
         employeeDTO.setNumberOfShifts(numberOfWorkingShifts);
+
         return employeeDTO;
     }
 
@@ -53,6 +56,9 @@ class EmployeeDtoMapper {
                     employeeDTO.getUnavailabilityList().stream()
                             .map(EmployeeDtoMapper::toTimeFrame)
                             .collect(Collectors.toList()));
+        }
+        if (employeeDTO.getWorkingDays() != null) {
+            employee.setWorkingDays(employeeDTO.getWorkingDays());
         }
 
         return employee;

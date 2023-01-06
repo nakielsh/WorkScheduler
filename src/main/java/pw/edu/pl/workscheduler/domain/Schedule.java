@@ -6,6 +6,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,6 @@ class Schedule {
     private Long id;
 
     private YearMonth month;
-    //    private final AppUser owner = new AppUser();
     private List<ShiftDay> shiftDays = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
 
@@ -59,10 +59,13 @@ class Schedule {
 
     List<Long> getEmptyShifts() {
         List<Long> emptyShifts = new ArrayList<>();
+
         for (ShiftDay shiftDay : shiftDays) {
-            for (Shift shift : shiftDay.getShiftsForADay()) {
-                if (shift.getEmployee() == null) {
-                    emptyShifts.add(shift.getId());
+            if (!shiftDay.isWeekend()) {
+                for (Shift shift : shiftDay.getShiftsForADay()) {
+                    if (shift.getEmployee() == null) {
+                        emptyShifts.add(shift.getId());
+                    }
                 }
             }
         }
@@ -72,5 +75,9 @@ class Schedule {
     private boolean isEmployeeInTheList(Employee employee) {
         return employeeList.stream()
                 .anyMatch(empl -> Objects.equals(empl.getName(), employee.getName()));
+    }
+
+    List<Employee> getEmployeesAvailableForShift(Shift shift) {
+        return employeeList.stream().filter(shift::canBeAssigned).collect(Collectors.toList());
     }
 }

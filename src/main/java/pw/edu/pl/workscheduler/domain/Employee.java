@@ -1,6 +1,6 @@
 package pw.edu.pl.workscheduler.domain;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -16,8 +16,8 @@ class Employee {
     private String name;
 
     private List<TimeFrame> unavailabilityList = new ArrayList<>();
-
     private List<Shift> shifts = new ArrayList<>();
+    private List<LocalDate> workingDays = new ArrayList<>();
 
     // used to algorithm
     private int availableShiftsNumber = 0;
@@ -33,6 +33,7 @@ class Employee {
 
     void addShift(Shift shift) {
         shifts.add(shift);
+        workingDays.add(shift.getStartTime().toLocalDate());
         allShiftsLeft--;
     }
 
@@ -49,16 +50,5 @@ class Employee {
                 name,
                 availableShiftsNumber,
                 allShiftsLeft);
-    }
-
-    int getNumberOfWorkingShifts(YearMonth month) {
-        allShiftsLeft = 0;
-        for (Shift shift : shifts) {
-            if (shift.getStartTime().getMonth().equals(month.getMonth())
-                    && shift.getStartTime().getYear() == month.getYear()) {
-                allShiftsLeft++;
-            }
-        }
-        return allShiftsLeft;
     }
 }

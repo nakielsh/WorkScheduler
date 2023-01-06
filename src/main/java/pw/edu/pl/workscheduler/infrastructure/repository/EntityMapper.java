@@ -1,5 +1,7 @@
 package pw.edu.pl.workscheduler.infrastructure.repository;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
@@ -67,6 +69,9 @@ class EntityMapper {
             }
             employeeEntity.setName(employeeDTO.getName());
             employeeEntity.setUnavailabilityList(employeeDTO.getUnavailabilityList());
+            if (employeeDTO.getWorkingDays() != null) {
+                employeeEntity.setWorkingDays(employeeDTO.getWorkingDays());
+            }
         }
 
         return employeeEntity;
@@ -111,12 +116,19 @@ class EntityMapper {
         return new EmployeeDTO(
                 employeeEntity.getId(),
                 employeeEntity.getName(),
-                getUnavailabilityList(employeeEntity));
+                getUnavailabilityList(employeeEntity),
+                getWorkingDays(employeeEntity));
     }
 
     private static List<TimeFrameDTO> getUnavailabilityList(EmployeeEntity employeeEntity) {
         return employeeEntity.getUnavailabilityList() == null
                 ? null
                 : employeeEntity.getUnavailabilityList().stream().toList();
+    }
+
+    private static List<LocalDate> getWorkingDays(EmployeeEntity employeeEntity) {
+        return employeeEntity.getWorkingDays() == null
+                ? null
+                : new ArrayList<>(employeeEntity.getWorkingDays());
     }
 }

@@ -41,6 +41,10 @@ public class ScheduleFacade {
         return employeeService.getAllEmployees();
     }
 
+    public List<EmployeeDTO> getAvailableEmployees(Long shiftId) {
+        return employeeService.getAvailableEmployeesForShift(shiftId);
+    }
+
     public EmployeeDTO addEmployee(AddEmployeeCommand command) {
         return employeeService.addEmployee(command);
     }

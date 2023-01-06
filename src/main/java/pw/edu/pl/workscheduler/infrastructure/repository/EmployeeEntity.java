@@ -1,5 +1,6 @@
 package pw.edu.pl.workscheduler.infrastructure.repository;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -34,4 +35,6 @@ class EmployeeEntity {
 
     @ManyToMany(mappedBy = "employeeList")
     private Collection<ScheduleEntity> schedules;
+
+    @ElementCollection private Collection<LocalDate> workingDays;
 }

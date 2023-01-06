@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO;
+import pw.edu.pl.workscheduler.domain.dto.ShiftDayDTO;
 import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort;
 
 public class InMemoryScheduleRepo implements ScheduleOutputPort {
@@ -60,5 +61,19 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
     @Override
     public List<ScheduleDTO> getAllSchedules() {
         return schedules.values().stream().toList();
+    }
+
+    @Override
+    public ScheduleDTO getScheduleByShiftId(Long shiftId) {
+        for (ScheduleDTO scheduleDTO : schedules.values()) {
+            for (ShiftDayDTO shiftDayDTO : scheduleDTO.getShiftDays()) {
+                for (int i = 0; i < shiftDayDTO.getShiftsForADay().size(); i++) {
+                    if (shiftDayDTO.getShiftsForADay().get(i).getId().equals(shiftId)) {
+                        return scheduleDTO;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
