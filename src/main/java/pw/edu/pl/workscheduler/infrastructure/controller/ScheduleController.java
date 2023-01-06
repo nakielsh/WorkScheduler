@@ -21,9 +21,6 @@ import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateSchedul
 @AllArgsConstructor
 class ScheduleController {
 
-    // @TODO add empty shifts to scheduleDTO
-    // @TODO add summary of number of workingSchedules in EmployeeDTO
-
     // @TODO exchange existing employee in shift
 
     // @TODO get available employees for shift endpoint

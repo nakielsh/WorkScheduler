@@ -61,21 +61,21 @@ class BOE {
             return null;
         }
 
-        return streamEmployeesWithShiftsLeftEqualTo(maxNoOfShiftsLeft)
+        return streamEmployeesWithShiftsLeftEqualTo(maxNoOfShiftsLeft, shift)
                 .filter(employee -> employee.getAvailableShiftsNumber() > 0)
                 .min(Comparator.comparing(Employee::getAvailableShiftsNumber))
                 .orElseThrow();
     }
 
     private int getMaxValueOfAllShiftsLeft(Shift shift) {
-        return getEmployeesForShift(shift).stream()
+        return schedule.getEmployeesAvailableForShift(shift).stream()
                 .map(Employee::getAllShiftsLeft)
                 .max(Integer::compareTo)
                 .orElseThrow(() -> new IllegalStateException("No employees for shift"));
     }
 
-    private Stream<Employee> streamEmployeesWithShiftsLeftEqualTo(int shiftsLeft) {
-        return schedule.getEmployeeList().stream()
+    private Stream<Employee> streamEmployeesWithShiftsLeftEqualTo(int shiftsLeft, Shift shift) {
+        return schedule.getEmployeesAvailableForShift(shift).stream()
                 .filter(employee -> employee.getAllShiftsLeft() == shiftsLeft);
     }
 
@@ -98,22 +98,12 @@ class BOE {
                 .orElseThrow();
     }
 
-    private List<Employee> getEmployeesForShift(Shift shift) {
-        return schedule.getEmployeeList().stream()
-                .filter(shift::canBeAssigned)
-                .filter(employee -> !isEmployeeAlreadyWorkingThisDay(employee, shift))
-                .collect(Collectors.toList());
-    }
-
-    private boolean isEmployeeAlreadyWorkingThisDay(Employee employee, Shift shift) {
-        int dayOfMonth = shift.getStartTime().getDayOfMonth();
-        return employee.getShifts().stream()
-                .anyMatch(shift1 -> shift1.getStartTime().getDayOfMonth() == dayOfMonth);
-    }
-
     private Shift getLeastWantedShift() {
         return getUnassignedShifts().stream()
-                .map(shift -> shift.calculatePossibleEmployees(getEmployeesForShift(shift)))
+                .map(
+                        shift ->
+                                shift.calculatePossibleEmployees(
+                                        schedule.getEmployeesAvailableForShift(shift)))
                 .filter(value -> value > 0)
                 .min(Integer::compareTo)
                 .flatMap(

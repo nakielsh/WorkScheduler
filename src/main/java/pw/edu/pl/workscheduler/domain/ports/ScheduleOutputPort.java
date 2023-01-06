@@ -12,4 +12,6 @@ public interface ScheduleOutputPort {
     ScheduleDTO getSchedule(Long scheduleId);
 
     List<ScheduleDTO> getAllSchedules();
+
+    ScheduleDTO getScheduleByShiftId(Long shiftId);
 }

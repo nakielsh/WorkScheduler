@@ -55,7 +55,8 @@ class Shift {
                 return false;
             }
         }
-        return true;
+        return employee.getWorkingDays().stream()
+                .noneMatch(day -> day.compareTo(startTime.toLocalDate()) == 0);
     }
 
     int calculatePossibleEmployees(List<Employee> employees) {
