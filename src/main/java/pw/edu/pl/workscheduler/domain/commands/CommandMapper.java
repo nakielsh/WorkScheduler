@@ -22,11 +22,13 @@ public class CommandMapper {
     public static InitiateScheduleCommand toInitiateScheduleCommand(
         InitiateScheduleRequest request) {
         return new InitiateScheduleCommand(
-            request.getMonth(),
-            request.getStartTime(),
-            request.getEndTime(),
-            request.getShiftTimes(),
-            request.getEmployeeIds());
+                request.getScheduleName(),
+                request.getManagerName(),
+                request.getMonth(),
+                request.getStartTime(),
+                request.getEndTime(),
+                request.getShiftTimes(),
+                request.getEmployeeIds());
     }
 
     public static AddEmployeeCommand toAddEmployeeCommand(AddEmployeeToScheduleCommand command) {

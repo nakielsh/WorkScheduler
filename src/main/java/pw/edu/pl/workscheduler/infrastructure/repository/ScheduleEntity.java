@@ -27,6 +27,9 @@ class ScheduleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private String managerName;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-yyyy")
     private YearMonth scheduleMonth;
 

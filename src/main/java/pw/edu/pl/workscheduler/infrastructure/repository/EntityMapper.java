@@ -20,6 +20,8 @@ class EntityMapper {
         if (scheduleDTO.getId() != null) {
             scheduleEntity.setId(scheduleDTO.getId());
         }
+        scheduleEntity.setName(scheduleDTO.getScheduleName());
+        scheduleEntity.setManagerName(scheduleDTO.getManagerName());
         scheduleEntity.setScheduleMonth(scheduleDTO.getMonth());
         scheduleEntity.setShiftDays(
                 scheduleDTO.getShiftDays().stream()
@@ -80,6 +82,8 @@ class EntityMapper {
     public static ScheduleDTO toScheduleDTO(ScheduleEntity scheduleEntity) {
         return new ScheduleDTO(
                 scheduleEntity.getId(),
+                scheduleEntity.getName(),
+                scheduleEntity.getManagerName(),
                 scheduleEntity.getScheduleMonth(),
                 scheduleEntity.getShiftDays().stream()
                         .map(EntityMapper::toShiftDayDTO)

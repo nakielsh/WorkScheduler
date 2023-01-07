@@ -1,5 +1,8 @@
 # EXEMPLARY CALL GET /employees
 
+optional query parameters:
+    shiftId - get available employees for a specific shift
+
 # EXEMPLARY RESPONSE:
 
 [

@@ -15,6 +15,8 @@ import lombok.Setter;
 class Schedule {
 
     private Long id;
+    private String scheduleName;
+    private String managerName;
 
     private YearMonth month;
     private List<ShiftDay> shiftDays = new ArrayList<>();
@@ -57,14 +59,14 @@ class Schedule {
         return workingShifts;
     }
 
-    List<Long> getEmptyShifts() {
-        List<Long> emptyShifts = new ArrayList<>();
+    List<Shift> getEmptyShifts() {
+        List<Shift> emptyShifts = new ArrayList<>();
 
         for (ShiftDay shiftDay : shiftDays) {
             if (!shiftDay.isWeekend()) {
                 for (Shift shift : shiftDay.getShiftsForADay()) {
                     if (shift.getEmployee() == null) {
-                        emptyShifts.add(shift.getId());
+                        emptyShifts.add(shift);
                     }
                 }
             }
