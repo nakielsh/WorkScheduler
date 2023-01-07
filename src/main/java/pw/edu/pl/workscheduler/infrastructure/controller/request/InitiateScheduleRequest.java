@@ -22,4 +22,7 @@ public class InitiateScheduleRequest {
     private List<LocalTime> shiftTimes;
 
     private List<Long> employeeIds;
+
+    private String scheduleName;
+    private String managerName;
 }

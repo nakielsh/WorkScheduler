@@ -13,6 +13,8 @@ class ScheduleDtoMapper {
         ScheduleDTO scheduleDTO =
                 new ScheduleDTO(
                         schedule.getId(),
+                        schedule.getScheduleName(),
+                        schedule.getManagerName(),
                         schedule.getMonth(),
                         schedule.getShiftDays().stream()
                                 .map(ScheduleDtoMapper::toShiftDayDTO)
@@ -23,7 +25,10 @@ class ScheduleDtoMapper {
                                                 EmployeeDtoMapper.toEmployeeDTO(employee, schedule))
                                 .collect(Collectors.toList()));
 
-        scheduleDTO.setEmptyShifts(schedule.getEmptyShifts());
+        scheduleDTO.setEmptyShifts(
+                schedule.getEmptyShifts().stream()
+                        .map(EmployeeDtoMapper::toShiftDTO)
+                        .collect(Collectors.toList()));
 
         return scheduleDTO;
     }
@@ -31,6 +36,8 @@ class ScheduleDtoMapper {
     public static Schedule toSchedule(ScheduleDTO scheduleDTO) {
         Schedule schedule = new Schedule();
         schedule.setId(scheduleDTO.getId());
+        schedule.setScheduleName(scheduleDTO.getScheduleName());
+        schedule.setManagerName(scheduleDTO.getManagerName());
         schedule.setMonth(scheduleDTO.getMonth());
         schedule.setEmployeeList(
                 scheduleDTO.getEmployeeList().stream()

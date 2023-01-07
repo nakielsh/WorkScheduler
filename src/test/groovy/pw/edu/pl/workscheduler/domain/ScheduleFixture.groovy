@@ -12,6 +12,8 @@ trait ScheduleFixture {
 
     InitiateScheduleCommand initiateScheduleCommand(int month, List<Long> employeeIds) {
         new InitiateScheduleCommand(
+                "Test schedule",
+                "John Kowalski",
                 YearMonth.of(2022, month),
                 LocalTime.of(8, 0),
                 LocalTime.of(23, 0),
@@ -27,6 +29,8 @@ trait ScheduleFixture {
         scheduleDTO1.shiftDays.each { day -> day.getShiftsForADay().sort(Comparator.comparing(ShiftDTO::getId)) }
         scheduleDTO2.shiftDays.each { day -> day.getShiftsForADay().sort(Comparator.comparing(ShiftDTO::getId)) }
         return scheduleDTO1.id == scheduleDTO2.id &&
+                scheduleDTO1.scheduleName == scheduleDTO2.scheduleName &&
+                scheduleDTO1.managerName == scheduleDTO2.managerName &&
                 scheduleDTO1.month == scheduleDTO2.month &&
                 scheduleDTO1.shiftDays == scheduleDTO2.shiftDays &&
                 scheduleDTO1.employeeList == scheduleDTO2.employeeList

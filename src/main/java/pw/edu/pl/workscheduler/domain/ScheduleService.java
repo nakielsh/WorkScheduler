@@ -16,6 +16,8 @@ class ScheduleService {
     ScheduleDTO initializeSchedule(InitiateScheduleCommand command) {
 
         Schedule schedule = new Schedule();
+        schedule.setScheduleName(command.getScheduleName());
+        schedule.setManagerName(command.getManagerName());
         schedule.setMonth(command.getMonth());
         schedule.setEmployeeList(getEmployeesFromId(command.getEmployeeIds()));
         schedule.generateShiftDays(

@@ -1,13 +1,15 @@
 # EXEMPLARY CALL POST /schedule/generate
 
 {
+    "scheduleName": "Dummy Schedule 1",
+    "managerName": "John Covalski",
     "month": "2022-02",
     "startTime": "08:00",
     "endTime": "23:00",
     "shiftTimes": [
         "16:00",
         "19:00",
-        "21:00"
+        "20:30"
     ],
     "employeeIds": [
         1,2,3,4,5
@@ -18,1567 +20,725 @@
 
 {
     "id": 1,
+    "scheduleName": "Dummy Schedule 1",
+    "managerName": "John Covalski",
     "month": "2022-02",
-    "shiftDays": [
+    "shifts": [
         {
             "id": 1,
-            "date": "2022-02-01",
-            "shiftsForADay": [
-                {
-                    "id": 1,
-                    "startTime": "2022-02-01T08:00:00",
-                    "endTime": "2022-02-01T16:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 2,
-                    "startTime": "2022-02-01T16:00:00",
-                    "endTime": "2022-02-01T19:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 3,
-                    "startTime": "2022-02-01T19:00:00",
-                    "endTime": "2022-02-01T21:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 4,
-                    "startTime": "2022-02-01T21:00:00",
-                    "endTime": "2022-02-01T23:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-01T08:00:00",
+            "endTime": "2022-02-01T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
         },
         {
             "id": 2,
-            "date": "2022-02-02",
-            "shiftsForADay": [
-                {
-                    "id": 5,
-                    "startTime": "2022-02-02T08:00:00",
-                    "endTime": "2022-02-02T16:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 6,
-                    "startTime": "2022-02-02T16:00:00",
-                    "endTime": "2022-02-02T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 7,
-                    "startTime": "2022-02-02T19:00:00",
-                    "endTime": "2022-02-02T21:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 8,
-                    "startTime": "2022-02-02T21:00:00",
-                    "endTime": "2022-02-02T23:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-01T16:00:00",
+            "endTime": "2022-02-01T19:00:00",
+            "employeeId": 5,
+            "employeeName": "test5"
         },
         {
             "id": 3,
-            "date": "2022-02-03",
-            "shiftsForADay": [
-                {
-                    "id": 9,
-                    "startTime": "2022-02-03T08:00:00",
-                    "endTime": "2022-02-03T16:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 10,
-                    "startTime": "2022-02-03T16:00:00",
-                    "endTime": "2022-02-03T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 11,
-                    "startTime": "2022-02-03T19:00:00",
-                    "endTime": "2022-02-03T21:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 12,
-                    "startTime": "2022-02-03T21:00:00",
-                    "endTime": "2022-02-03T23:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-01T19:00:00",
+            "endTime": "2022-02-01T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
         },
         {
             "id": 4,
-            "date": "2022-02-04",
-            "shiftsForADay": [
-                {
-                    "id": 13,
-                    "startTime": "2022-02-04T08:00:00",
-                    "endTime": "2022-02-04T16:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 14,
-                    "startTime": "2022-02-04T16:00:00",
-                    "endTime": "2022-02-04T19:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 15,
-                    "startTime": "2022-02-04T19:00:00",
-                    "endTime": "2022-02-04T21:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 16,
-                    "startTime": "2022-02-04T21:00:00",
-                    "endTime": "2022-02-04T23:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-01T20:30:00",
+            "endTime": "2022-02-01T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
         },
         {
             "id": 5,
-            "date": "2022-02-05",
-            "shiftsForADay": [
-                {
-                    "id": 17,
-                    "startTime": "2022-02-05T08:00:00",
-                    "endTime": "2022-02-05T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 18,
-                    "startTime": "2022-02-05T16:00:00",
-                    "endTime": "2022-02-05T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 19,
-                    "startTime": "2022-02-05T19:00:00",
-                    "endTime": "2022-02-05T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 20,
-                    "startTime": "2022-02-05T21:00:00",
-                    "endTime": "2022-02-05T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-02T08:00:00",
+            "endTime": "2022-02-02T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
         },
         {
             "id": 6,
-            "date": "2022-02-06",
-            "shiftsForADay": [
-                {
-                    "id": 21,
-                    "startTime": "2022-02-06T08:00:00",
-                    "endTime": "2022-02-06T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 22,
-                    "startTime": "2022-02-06T16:00:00",
-                    "endTime": "2022-02-06T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 23,
-                    "startTime": "2022-02-06T19:00:00",
-                    "endTime": "2022-02-06T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 24,
-                    "startTime": "2022-02-06T21:00:00",
-                    "endTime": "2022-02-06T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-02T16:00:00",
+            "endTime": "2022-02-02T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
         },
         {
             "id": 7,
-            "date": "2022-02-07",
-            "shiftsForADay": [
-                {
-                    "id": 25,
-                    "startTime": "2022-02-07T08:00:00",
-                    "endTime": "2022-02-07T16:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 26,
-                    "startTime": "2022-02-07T16:00:00",
-                    "endTime": "2022-02-07T19:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 27,
-                    "startTime": "2022-02-07T19:00:00",
-                    "endTime": "2022-02-07T21:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 28,
-                    "startTime": "2022-02-07T21:00:00",
-                    "endTime": "2022-02-07T23:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-02T19:00:00",
+            "endTime": "2022-02-02T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
         },
         {
             "id": 8,
-            "date": "2022-02-08",
-            "shiftsForADay": [
-                {
-                    "id": 29,
-                    "startTime": "2022-02-08T08:00:00",
-                    "endTime": "2022-02-08T16:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 30,
-                    "startTime": "2022-02-08T16:00:00",
-                    "endTime": "2022-02-08T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 31,
-                    "startTime": "2022-02-08T19:00:00",
-                    "endTime": "2022-02-08T21:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 32,
-                    "startTime": "2022-02-08T21:00:00",
-                    "endTime": "2022-02-08T23:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-02T20:30:00",
+            "endTime": "2022-02-02T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
         },
         {
             "id": 9,
-            "date": "2022-02-09",
-            "shiftsForADay": [
-                {
-                    "id": 33,
-                    "startTime": "2022-02-09T08:00:00",
-                    "endTime": "2022-02-09T16:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 34,
-                    "startTime": "2022-02-09T16:00:00",
-                    "endTime": "2022-02-09T19:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 35,
-                    "startTime": "2022-02-09T19:00:00",
-                    "endTime": "2022-02-09T21:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 36,
-                    "startTime": "2022-02-09T21:00:00",
-                    "endTime": "2022-02-09T23:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-03T08:00:00",
+            "endTime": "2022-02-03T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
         },
         {
             "id": 10,
-            "date": "2022-02-10",
-            "shiftsForADay": [
-                {
-                    "id": 37,
-                    "startTime": "2022-02-10T08:00:00",
-                    "endTime": "2022-02-10T16:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 38,
-                    "startTime": "2022-02-10T16:00:00",
-                    "endTime": "2022-02-10T19:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 39,
-                    "startTime": "2022-02-10T19:00:00",
-                    "endTime": "2022-02-10T21:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 40,
-                    "startTime": "2022-02-10T21:00:00",
-                    "endTime": "2022-02-10T23:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-03T16:00:00",
+            "endTime": "2022-02-03T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
         },
         {
             "id": 11,
-            "date": "2022-02-11",
-            "shiftsForADay": [
-                {
-                    "id": 41,
-                    "startTime": "2022-02-11T08:00:00",
-                    "endTime": "2022-02-11T16:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 42,
-                    "startTime": "2022-02-11T16:00:00",
-                    "endTime": "2022-02-11T19:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 43,
-                    "startTime": "2022-02-11T19:00:00",
-                    "endTime": "2022-02-11T21:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 44,
-                    "startTime": "2022-02-11T21:00:00",
-                    "endTime": "2022-02-11T23:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-03T19:00:00",
+            "endTime": "2022-02-03T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
         },
         {
             "id": 12,
-            "date": "2022-02-12",
-            "shiftsForADay": [
-                {
-                    "id": 45,
-                    "startTime": "2022-02-12T08:00:00",
-                    "endTime": "2022-02-12T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 46,
-                    "startTime": "2022-02-12T16:00:00",
-                    "endTime": "2022-02-12T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 47,
-                    "startTime": "2022-02-12T19:00:00",
-                    "endTime": "2022-02-12T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 48,
-                    "startTime": "2022-02-12T21:00:00",
-                    "endTime": "2022-02-12T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-03T20:30:00",
+            "endTime": "2022-02-03T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
         },
         {
             "id": 13,
-            "date": "2022-02-13",
-            "shiftsForADay": [
-                {
-                    "id": 49,
-                    "startTime": "2022-02-13T08:00:00",
-                    "endTime": "2022-02-13T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 50,
-                    "startTime": "2022-02-13T16:00:00",
-                    "endTime": "2022-02-13T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 51,
-                    "startTime": "2022-02-13T19:00:00",
-                    "endTime": "2022-02-13T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 52,
-                    "startTime": "2022-02-13T21:00:00",
-                    "endTime": "2022-02-13T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-04T08:00:00",
+            "endTime": "2022-02-04T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
         },
         {
             "id": 14,
-            "date": "2022-02-14",
-            "shiftsForADay": [
-                {
-                    "id": 53,
-                    "startTime": "2022-02-14T08:00:00",
-                    "endTime": "2022-02-14T16:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 54,
-                    "startTime": "2022-02-14T16:00:00",
-                    "endTime": "2022-02-14T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 55,
-                    "startTime": "2022-02-14T19:00:00",
-                    "endTime": "2022-02-14T21:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 56,
-                    "startTime": "2022-02-14T21:00:00",
-                    "endTime": "2022-02-14T23:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-04T16:00:00",
+            "endTime": "2022-02-04T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
         },
         {
             "id": 15,
-            "date": "2022-02-15",
-            "shiftsForADay": [
-                {
-                    "id": 57,
-                    "startTime": "2022-02-15T08:00:00",
-                    "endTime": "2022-02-15T16:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 58,
-                    "startTime": "2022-02-15T16:00:00",
-                    "endTime": "2022-02-15T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 59,
-                    "startTime": "2022-02-15T19:00:00",
-                    "endTime": "2022-02-15T21:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 60,
-                    "startTime": "2022-02-15T21:00:00",
-                    "endTime": "2022-02-15T23:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-04T19:00:00",
+            "endTime": "2022-02-04T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
         },
         {
             "id": 16,
-            "date": "2022-02-16",
-            "shiftsForADay": [
-                {
-                    "id": 61,
-                    "startTime": "2022-02-16T08:00:00",
-                    "endTime": "2022-02-16T16:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 62,
-                    "startTime": "2022-02-16T16:00:00",
-                    "endTime": "2022-02-16T19:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 63,
-                    "startTime": "2022-02-16T19:00:00",
-                    "endTime": "2022-02-16T21:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 64,
-                    "startTime": "2022-02-16T21:00:00",
-                    "endTime": "2022-02-16T23:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-04T20:30:00",
+            "endTime": "2022-02-04T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
         },
         {
             "id": 17,
-            "date": "2022-02-17",
-            "shiftsForADay": [
-                {
-                    "id": 65,
-                    "startTime": "2022-02-17T08:00:00",
-                    "endTime": "2022-02-17T16:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 66,
-                    "startTime": "2022-02-17T16:00:00",
-                    "endTime": "2022-02-17T19:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 67,
-                    "startTime": "2022-02-17T19:00:00",
-                    "endTime": "2022-02-17T21:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 68,
-                    "startTime": "2022-02-17T21:00:00",
-                    "endTime": "2022-02-17T23:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-05T08:00:00",
+            "endTime": "2022-02-05T16:00:00"
         },
         {
             "id": 18,
-            "date": "2022-02-18",
-            "shiftsForADay": [
-                {
-                    "id": 69,
-                    "startTime": "2022-02-18T08:00:00",
-                    "endTime": "2022-02-18T16:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 70,
-                    "startTime": "2022-02-18T16:00:00",
-                    "endTime": "2022-02-18T19:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 71,
-                    "startTime": "2022-02-18T19:00:00",
-                    "endTime": "2022-02-18T21:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 72,
-                    "startTime": "2022-02-18T21:00:00",
-                    "endTime": "2022-02-18T23:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-05T16:00:00",
+            "endTime": "2022-02-05T19:00:00"
         },
         {
             "id": 19,
-            "date": "2022-02-19",
-            "shiftsForADay": [
-                {
-                    "id": 73,
-                    "startTime": "2022-02-19T08:00:00",
-                    "endTime": "2022-02-19T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 74,
-                    "startTime": "2022-02-19T16:00:00",
-                    "endTime": "2022-02-19T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 75,
-                    "startTime": "2022-02-19T19:00:00",
-                    "endTime": "2022-02-19T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 76,
-                    "startTime": "2022-02-19T21:00:00",
-                    "endTime": "2022-02-19T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-05T19:00:00",
+            "endTime": "2022-02-05T20:30:00"
         },
         {
             "id": 20,
-            "date": "2022-02-20",
-            "shiftsForADay": [
-                {
-                    "id": 77,
-                    "startTime": "2022-02-20T08:00:00",
-                    "endTime": "2022-02-20T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 78,
-                    "startTime": "2022-02-20T16:00:00",
-                    "endTime": "2022-02-20T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 79,
-                    "startTime": "2022-02-20T19:00:00",
-                    "endTime": "2022-02-20T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 80,
-                    "startTime": "2022-02-20T21:00:00",
-                    "endTime": "2022-02-20T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-05T20:30:00",
+            "endTime": "2022-02-05T23:00:00"
         },
         {
             "id": 21,
-            "date": "2022-02-21",
-            "shiftsForADay": [
-                {
-                    "id": 81,
-                    "startTime": "2022-02-21T08:00:00",
-                    "endTime": "2022-02-21T16:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 82,
-                    "startTime": "2022-02-21T16:00:00",
-                    "endTime": "2022-02-21T19:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 83,
-                    "startTime": "2022-02-21T19:00:00",
-                    "endTime": "2022-02-21T21:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 84,
-                    "startTime": "2022-02-21T21:00:00",
-                    "endTime": "2022-02-21T23:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-06T08:00:00",
+            "endTime": "2022-02-06T16:00:00"
         },
         {
             "id": 22,
-            "date": "2022-02-22",
-            "shiftsForADay": [
-                {
-                    "id": 85,
-                    "startTime": "2022-02-22T08:00:00",
-                    "endTime": "2022-02-22T16:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 86,
-                    "startTime": "2022-02-22T16:00:00",
-                    "endTime": "2022-02-22T19:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 87,
-                    "startTime": "2022-02-22T19:00:00",
-                    "endTime": "2022-02-22T21:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 88,
-                    "startTime": "2022-02-22T21:00:00",
-                    "endTime": "2022-02-22T23:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-06T16:00:00",
+            "endTime": "2022-02-06T19:00:00"
         },
         {
             "id": 23,
-            "date": "2022-02-23",
-            "shiftsForADay": [
-                {
-                    "id": 89,
-                    "startTime": "2022-02-23T08:00:00",
-                    "endTime": "2022-02-23T16:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 90,
-                    "startTime": "2022-02-23T16:00:00",
-                    "endTime": "2022-02-23T19:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 91,
-                    "startTime": "2022-02-23T19:00:00",
-                    "endTime": "2022-02-23T21:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 92,
-                    "startTime": "2022-02-23T21:00:00",
-                    "endTime": "2022-02-23T23:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-06T19:00:00",
+            "endTime": "2022-02-06T20:30:00"
         },
         {
             "id": 24,
-            "date": "2022-02-24",
-            "shiftsForADay": [
-                {
-                    "id": 93,
-                    "startTime": "2022-02-24T08:00:00",
-                    "endTime": "2022-02-24T16:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 94,
-                    "startTime": "2022-02-24T16:00:00",
-                    "endTime": "2022-02-24T19:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 95,
-                    "startTime": "2022-02-24T19:00:00",
-                    "endTime": "2022-02-24T21:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 96,
-                    "startTime": "2022-02-24T21:00:00",
-                    "endTime": "2022-02-24T23:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-06T20:30:00",
+            "endTime": "2022-02-06T23:00:00"
         },
         {
             "id": 25,
-            "date": "2022-02-25",
-            "shiftsForADay": [
-                {
-                    "id": 97,
-                    "startTime": "2022-02-25T08:00:00",
-                    "endTime": "2022-02-25T16:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 98,
-                    "startTime": "2022-02-25T16:00:00",
-                    "endTime": "2022-02-25T19:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 99,
-                    "startTime": "2022-02-25T19:00:00",
-                    "endTime": "2022-02-25T21:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 100,
-                    "startTime": "2022-02-25T21:00:00",
-                    "endTime": "2022-02-25T23:00:00",
-                    "employee": {
-                        "id": 1,
-                        "name": "test1",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-01T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-07T08:00:00",
+            "endTime": "2022-02-07T16:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
         },
         {
             "id": 26,
-            "date": "2022-02-26",
-            "shiftsForADay": [
-                {
-                    "id": 101,
-                    "startTime": "2022-02-26T08:00:00",
-                    "endTime": "2022-02-26T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 102,
-                    "startTime": "2022-02-26T16:00:00",
-                    "endTime": "2022-02-26T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 103,
-                    "startTime": "2022-02-26T19:00:00",
-                    "endTime": "2022-02-26T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 104,
-                    "startTime": "2022-02-26T21:00:00",
-                    "endTime": "2022-02-26T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-07T16:00:00",
+            "endTime": "2022-02-07T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
         },
         {
             "id": 27,
-            "date": "2022-02-27",
-            "shiftsForADay": [
-                {
-                    "id": 105,
-                    "startTime": "2022-02-27T08:00:00",
-                    "endTime": "2022-02-27T16:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 106,
-                    "startTime": "2022-02-27T16:00:00",
-                    "endTime": "2022-02-27T19:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 107,
-                    "startTime": "2022-02-27T19:00:00",
-                    "endTime": "2022-02-27T21:00:00",
-                    "employee": null
-                },
-                {
-                    "id": 108,
-                    "startTime": "2022-02-27T21:00:00",
-                    "endTime": "2022-02-27T23:00:00",
-                    "employee": null
-                }
-            ]
+            "startTime": "2022-02-07T19:00:00",
+            "endTime": "2022-02-07T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
         },
         {
             "id": 28,
-            "date": "2022-02-28",
-            "shiftsForADay": [
-                {
-                    "id": 109,
-                    "startTime": "2022-02-28T08:00:00",
-                    "endTime": "2022-02-28T16:00:00",
-                    "employee": {
-                        "id": 2,
-                        "name": "test2",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-08T09:00:00",
-                                "endTime": "2022-02-10T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 110,
-                    "startTime": "2022-02-28T16:00:00",
-                    "endTime": "2022-02-28T19:00:00",
-                    "employee": {
-                        "id": 3,
-                        "name": "test3",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-01T09:00:00",
-                                "endTime": "2022-02-05T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 111,
-                    "startTime": "2022-02-28T19:00:00",
-                    "endTime": "2022-02-28T21:00:00",
-                    "employee": {
-                        "id": 4,
-                        "name": "test4",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-06T09:00:00",
-                                "endTime": "2022-02-12T16:00:00"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": 112,
-                    "startTime": "2022-02-28T21:00:00",
-                    "endTime": "2022-02-28T23:00:00",
-                    "employee": {
-                        "id": 5,
-                        "name": "test5",
-                        "unavailabilityList": [
-                            {
-                                "startTime": "2022-02-16T09:00:00",
-                                "endTime": "2022-02-20T16:00:00"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "startTime": "2022-02-07T20:30:00",
+            "endTime": "2022-02-07T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 29,
+            "startTime": "2022-02-08T08:00:00",
+            "endTime": "2022-02-08T16:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 30,
+            "startTime": "2022-02-08T16:00:00",
+            "endTime": "2022-02-08T19:00:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 31,
+            "startTime": "2022-02-08T19:00:00",
+            "endTime": "2022-02-08T20:30:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 32,
+            "startTime": "2022-02-08T20:30:00",
+            "endTime": "2022-02-08T23:00:00"
+        },
+        {
+            "id": 33,
+            "startTime": "2022-02-09T08:00:00",
+            "endTime": "2022-02-09T16:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 34,
+            "startTime": "2022-02-09T16:00:00",
+            "endTime": "2022-02-09T19:00:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 35,
+            "startTime": "2022-02-09T19:00:00",
+            "endTime": "2022-02-09T20:30:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 36,
+            "startTime": "2022-02-09T20:30:00",
+            "endTime": "2022-02-09T23:00:00"
+        },
+        {
+            "id": 37,
+            "startTime": "2022-02-10T08:00:00",
+            "endTime": "2022-02-10T16:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 38,
+            "startTime": "2022-02-10T16:00:00",
+            "endTime": "2022-02-10T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 39,
+            "startTime": "2022-02-10T19:00:00",
+            "endTime": "2022-02-10T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 40,
+            "startTime": "2022-02-10T20:30:00",
+            "endTime": "2022-02-10T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 41,
+            "startTime": "2022-02-11T08:00:00",
+            "endTime": "2022-02-11T16:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 42,
+            "startTime": "2022-02-11T16:00:00",
+            "endTime": "2022-02-11T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 43,
+            "startTime": "2022-02-11T19:00:00",
+            "endTime": "2022-02-11T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 44,
+            "startTime": "2022-02-11T20:30:00",
+            "endTime": "2022-02-11T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 45,
+            "startTime": "2022-02-12T08:00:00",
+            "endTime": "2022-02-12T16:00:00"
+        },
+        {
+            "id": 46,
+            "startTime": "2022-02-12T16:00:00",
+            "endTime": "2022-02-12T19:00:00"
+        },
+        {
+            "id": 47,
+            "startTime": "2022-02-12T19:00:00",
+            "endTime": "2022-02-12T20:30:00"
+        },
+        {
+            "id": 48,
+            "startTime": "2022-02-12T20:30:00",
+            "endTime": "2022-02-12T23:00:00"
+        },
+        {
+            "id": 49,
+            "startTime": "2022-02-13T08:00:00",
+            "endTime": "2022-02-13T16:00:00"
+        },
+        {
+            "id": 50,
+            "startTime": "2022-02-13T16:00:00",
+            "endTime": "2022-02-13T19:00:00"
+        },
+        {
+            "id": 51,
+            "startTime": "2022-02-13T19:00:00",
+            "endTime": "2022-02-13T20:30:00"
+        },
+        {
+            "id": 52,
+            "startTime": "2022-02-13T20:30:00",
+            "endTime": "2022-02-13T23:00:00"
+        },
+        {
+            "id": 53,
+            "startTime": "2022-02-14T08:00:00",
+            "endTime": "2022-02-14T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 54,
+            "startTime": "2022-02-14T16:00:00",
+            "endTime": "2022-02-14T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 55,
+            "startTime": "2022-02-14T19:00:00",
+            "endTime": "2022-02-14T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 56,
+            "startTime": "2022-02-14T20:30:00",
+            "endTime": "2022-02-14T23:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 57,
+            "startTime": "2022-02-15T08:00:00",
+            "endTime": "2022-02-15T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 58,
+            "startTime": "2022-02-15T16:00:00",
+            "endTime": "2022-02-15T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 59,
+            "startTime": "2022-02-15T19:00:00",
+            "endTime": "2022-02-15T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 60,
+            "startTime": "2022-02-15T20:30:00",
+            "endTime": "2022-02-15T23:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 61,
+            "startTime": "2022-02-16T08:00:00",
+            "endTime": "2022-02-16T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 62,
+            "startTime": "2022-02-16T16:00:00",
+            "endTime": "2022-02-16T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 63,
+            "startTime": "2022-02-16T19:00:00",
+            "endTime": "2022-02-16T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 64,
+            "startTime": "2022-02-16T20:30:00",
+            "endTime": "2022-02-16T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 65,
+            "startTime": "2022-02-17T08:00:00",
+            "endTime": "2022-02-17T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 66,
+            "startTime": "2022-02-17T16:00:00",
+            "endTime": "2022-02-17T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 67,
+            "startTime": "2022-02-17T19:00:00",
+            "endTime": "2022-02-17T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 68,
+            "startTime": "2022-02-17T20:30:00",
+            "endTime": "2022-02-17T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 69,
+            "startTime": "2022-02-18T08:00:00",
+            "endTime": "2022-02-18T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 70,
+            "startTime": "2022-02-18T16:00:00",
+            "endTime": "2022-02-18T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 71,
+            "startTime": "2022-02-18T19:00:00",
+            "endTime": "2022-02-18T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 72,
+            "startTime": "2022-02-18T20:30:00",
+            "endTime": "2022-02-18T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 73,
+            "startTime": "2022-02-19T08:00:00",
+            "endTime": "2022-02-19T16:00:00"
+        },
+        {
+            "id": 74,
+            "startTime": "2022-02-19T16:00:00",
+            "endTime": "2022-02-19T19:00:00"
+        },
+        {
+            "id": 75,
+            "startTime": "2022-02-19T19:00:00",
+            "endTime": "2022-02-19T20:30:00"
+        },
+        {
+            "id": 76,
+            "startTime": "2022-02-19T20:30:00",
+            "endTime": "2022-02-19T23:00:00"
+        },
+        {
+            "id": 77,
+            "startTime": "2022-02-20T08:00:00",
+            "endTime": "2022-02-20T16:00:00"
+        },
+        {
+            "id": 78,
+            "startTime": "2022-02-20T16:00:00",
+            "endTime": "2022-02-20T19:00:00"
+        },
+        {
+            "id": 79,
+            "startTime": "2022-02-20T19:00:00",
+            "endTime": "2022-02-20T20:30:00"
+        },
+        {
+            "id": 80,
+            "startTime": "2022-02-20T20:30:00",
+            "endTime": "2022-02-20T23:00:00"
+        },
+        {
+            "id": 81,
+            "startTime": "2022-02-21T08:00:00",
+            "endTime": "2022-02-21T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 82,
+            "startTime": "2022-02-21T16:00:00",
+            "endTime": "2022-02-21T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 83,
+            "startTime": "2022-02-21T19:00:00",
+            "endTime": "2022-02-21T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 84,
+            "startTime": "2022-02-21T20:30:00",
+            "endTime": "2022-02-21T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 85,
+            "startTime": "2022-02-22T08:00:00",
+            "endTime": "2022-02-22T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 86,
+            "startTime": "2022-02-22T16:00:00",
+            "endTime": "2022-02-22T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 87,
+            "startTime": "2022-02-22T19:00:00",
+            "endTime": "2022-02-22T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 88,
+            "startTime": "2022-02-22T20:30:00",
+            "endTime": "2022-02-22T23:00:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 89,
+            "startTime": "2022-02-23T08:00:00",
+            "endTime": "2022-02-23T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 90,
+            "startTime": "2022-02-23T16:00:00",
+            "endTime": "2022-02-23T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 91,
+            "startTime": "2022-02-23T19:00:00",
+            "endTime": "2022-02-23T20:30:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 92,
+            "startTime": "2022-02-23T20:30:00",
+            "endTime": "2022-02-23T23:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 93,
+            "startTime": "2022-02-24T08:00:00",
+            "endTime": "2022-02-24T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 94,
+            "startTime": "2022-02-24T16:00:00",
+            "endTime": "2022-02-24T19:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 95,
+            "startTime": "2022-02-24T19:00:00",
+            "endTime": "2022-02-24T20:30:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 96,
+            "startTime": "2022-02-24T20:30:00",
+            "endTime": "2022-02-24T23:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 97,
+            "startTime": "2022-02-25T08:00:00",
+            "endTime": "2022-02-25T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 98,
+            "startTime": "2022-02-25T16:00:00",
+            "endTime": "2022-02-25T19:00:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 99,
+            "startTime": "2022-02-25T19:00:00",
+            "endTime": "2022-02-25T20:30:00",
+            "employeeId": 3,
+            "employeeName": "test3"
+        },
+        {
+            "id": 100,
+            "startTime": "2022-02-25T20:30:00",
+            "endTime": "2022-02-25T23:00:00",
+            "employeeId": 5,
+            "employeeName": "test5"
+        },
+        {
+            "id": 101,
+            "startTime": "2022-02-26T08:00:00",
+            "endTime": "2022-02-26T16:00:00"
+        },
+        {
+            "id": 102,
+            "startTime": "2022-02-26T16:00:00",
+            "endTime": "2022-02-26T19:00:00"
+        },
+        {
+            "id": 103,
+            "startTime": "2022-02-26T19:00:00",
+            "endTime": "2022-02-26T20:30:00"
+        },
+        {
+            "id": 104,
+            "startTime": "2022-02-26T20:30:00",
+            "endTime": "2022-02-26T23:00:00"
+        },
+        {
+            "id": 105,
+            "startTime": "2022-02-27T08:00:00",
+            "endTime": "2022-02-27T16:00:00"
+        },
+        {
+            "id": 106,
+            "startTime": "2022-02-27T16:00:00",
+            "endTime": "2022-02-27T19:00:00"
+        },
+        {
+            "id": 107,
+            "startTime": "2022-02-27T19:00:00",
+            "endTime": "2022-02-27T20:30:00"
+        },
+        {
+            "id": 108,
+            "startTime": "2022-02-27T20:30:00",
+            "endTime": "2022-02-27T23:00:00"
+        },
+        {
+            "id": 109,
+            "startTime": "2022-02-28T08:00:00",
+            "endTime": "2022-02-28T16:00:00",
+            "employeeId": 4,
+            "employeeName": "test4"
+        },
+        {
+            "id": 110,
+            "startTime": "2022-02-28T16:00:00",
+            "endTime": "2022-02-28T19:00:00",
+            "employeeId": 1,
+            "employeeName": "test1"
+        },
+        {
+            "id": 111,
+            "startTime": "2022-02-28T19:00:00",
+            "endTime": "2022-02-28T20:30:00",
+            "employeeId": 2,
+            "employeeName": "test2"
+        },
+        {
+            "id": 112,
+            "startTime": "2022-02-28T20:30:00",
+            "endTime": "2022-02-28T23:00:00",
+            "employeeId": 3,
+            "employeeName": "test3"
         }
     ],
     "employeeList": [
@@ -1591,6 +751,24 @@
                     "endTime": "2022-02-01T16:00:00"
                 }
             ],
+            "workingDays": [
+                "2022-02-01",
+                "2022-02-08",
+                "2022-02-09",
+                "2022-02-10",
+                "2022-02-02",
+                "2022-02-03",
+                "2022-02-04",
+                "2022-02-07",
+                "2022-02-11",
+                "2022-02-16",
+                "2022-02-17",
+                "2022-02-18",
+                "2022-02-21",
+                "2022-02-23",
+                "2022-02-24",
+                "2022-02-28"
+            ],
             "numberOfShifts": 16
         },
         {
@@ -1601,6 +779,24 @@
                     "startTime": "2022-02-08T09:00:00",
                     "endTime": "2022-02-10T16:00:00"
                 }
+            ],
+            "workingDays": [
+                "2022-02-01",
+                "2022-02-10",
+                "2022-02-02",
+                "2022-02-03",
+                "2022-02-04",
+                "2022-02-07",
+                "2022-02-11",
+                "2022-02-16",
+                "2022-02-17",
+                "2022-02-18",
+                "2022-02-14",
+                "2022-02-15",
+                "2022-02-22",
+                "2022-02-23",
+                "2022-02-25",
+                "2022-02-28"
             ],
             "numberOfShifts": 16
         },
@@ -1613,6 +809,24 @@
                     "endTime": "2022-02-05T16:00:00"
                 }
             ],
+            "workingDays": [
+                "2022-02-08",
+                "2022-02-09",
+                "2022-02-10",
+                "2022-02-07",
+                "2022-02-11",
+                "2022-02-16",
+                "2022-02-17",
+                "2022-02-18",
+                "2022-02-14",
+                "2022-02-15",
+                "2022-02-21",
+                "2022-02-22",
+                "2022-02-23",
+                "2022-02-24",
+                "2022-02-25",
+                "2022-02-28"
+            ],
             "numberOfShifts": 16
         },
         {
@@ -1624,7 +838,24 @@
                     "endTime": "2022-02-12T16:00:00"
                 }
             ],
-            "numberOfShifts": 16
+            "workingDays": [
+                "2022-02-01",
+                "2022-02-02",
+                "2022-02-03",
+                "2022-02-04",
+                "2022-02-16",
+                "2022-02-17",
+                "2022-02-18",
+                "2022-02-14",
+                "2022-02-15",
+                "2022-02-21",
+                "2022-02-22",
+                "2022-02-23",
+                "2022-02-24",
+                "2022-02-25",
+                "2022-02-28"
+            ],
+            "numberOfShifts": 15
         },
         {
             "id": 5,
@@ -1635,41 +866,36 @@
                     "endTime": "2022-02-20T16:00:00"
                 }
             ],
-            "numberOfShifts": 16
+            "workingDays": [
+                "2022-02-01",
+                "2022-02-08",
+                "2022-02-09",
+                "2022-02-10",
+                "2022-02-02",
+                "2022-02-03",
+                "2022-02-04",
+                "2022-02-07",
+                "2022-02-11",
+                "2022-02-14",
+                "2022-02-15",
+                "2022-02-21",
+                "2022-02-22",
+                "2022-02-24",
+                "2022-02-25"
+            ],
+            "numberOfShifts": 15
         }
     ],
     "emptyShifts": [
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108
+        {
+            "id": 32,
+            "startTime": "2022-02-08T20:30:00",
+            "endTime": "2022-02-08T23:00:00"
+        },
+        {
+            "id": 36,
+            "startTime": "2022-02-09T20:30:00",
+            "endTime": "2022-02-09T23:00:00"
+        }
     ]
 }

@@ -13,7 +13,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @JsonInclude(Include.NON_NULL)
-public class ScheduleDTO {
+public class CompactScheduleDTO {
 
     private final Long id;
 
@@ -21,8 +21,8 @@ public class ScheduleDTO {
     private final String managerName;
 
     private final YearMonth month;
-    private final List<ShiftDayDTO> shiftDays;
+    private final List<CompactShiftDTO> shifts;
     private final List<EmployeeDTO> employeeList;
 
-    @Setter private List<ShiftDTO> emptyShifts;
+    @Setter private List<CompactShiftDTO> emptyShifts;
 }

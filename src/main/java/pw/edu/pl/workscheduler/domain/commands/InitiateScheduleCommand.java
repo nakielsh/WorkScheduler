@@ -9,6 +9,10 @@ import lombok.Value;
 @Value
 public class InitiateScheduleCommand {
 
+    String scheduleName;
+
+    String managerName;
+
     YearMonth month;
 
     @JsonFormat(pattern = "HH:mm")
@@ -21,4 +25,5 @@ public class InitiateScheduleCommand {
     List<LocalTime> shiftTimes;
 
     List<Long> employeeIds;
+
 }

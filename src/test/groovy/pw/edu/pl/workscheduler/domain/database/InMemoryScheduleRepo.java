@@ -22,6 +22,8 @@ public class InMemoryScheduleRepo implements ScheduleOutputPort {
             scheduleToSave =
                     new ScheduleDTO(
                             schedules.size() + 1L,
+                            scheduleDTO.getScheduleName(),
+                            scheduleDTO.getManagerName(),
                             scheduleDTO.getMonth(),
                             scheduleDTO.getShiftDays(),
                             scheduleDTO.getEmployeeList());
