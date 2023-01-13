@@ -82,4 +82,26 @@ class Schedule {
     List<Employee> getEmployeesAvailableForShift(Shift shift) {
         return employeeList.stream().filter(shift::canBeAssigned).collect(Collectors.toList());
     }
+
+    void assignEmployeeToShift(Long shiftId, Employee employee) {
+        Shift shift = getShiftById(shiftId);
+        Employee previousEmployee = shift.getEmployee();
+        if (previousEmployee != null) {
+            previousEmployee.removeShift(shift);
+        }
+        shift.setEmployee(employee);
+    }
+
+    private Shift getShiftById(Long shiftId) {
+
+        return shiftDays.stream()
+                .map(ShiftDay::getShiftsForADay)
+                .flatMap(List::stream)
+                .filter(shift -> shift.getId().equals(shiftId))
+                .findFirst()
+                .orElseThrow(
+                        () ->
+                                new IllegalArgumentException(
+                                        "Shift with id " + shiftId + " not found"));
+    }
 }

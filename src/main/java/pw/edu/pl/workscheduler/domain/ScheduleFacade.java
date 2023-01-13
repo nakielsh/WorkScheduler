@@ -1,6 +1,8 @@
 package pw.edu.pl.workscheduler.domain;
 
+import java.io.IOException;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import pw.edu.pl.workscheduler.domain.commands.AddEmployeeCommand;
@@ -17,7 +19,7 @@ public class ScheduleFacade {
     private final ScheduleService scheduleService;
 
     @Transactional
-    public ScheduleDTO addEmployeeToSchedule(AddEmployeeToScheduleCommand command){
+    public ScheduleDTO addEmployeeToSchedule(AddEmployeeToScheduleCommand command) {
         EmployeeDTO employeeToAdd =
                 employeeService.addEmployee(CommandMapper.toAddEmployeeCommand(command));
         return scheduleService.addEmployeeToSchedule(
@@ -31,6 +33,17 @@ public class ScheduleFacade {
 
     public ScheduleDTO getSchedule(Long scheduleId) {
         return scheduleService.getSchedule(scheduleId);
+    }
+
+    public void generateSchedulePDF(Long scheduleId, HttpServletResponse response)
+            throws IOException {
+        Schedule schedule = ScheduleDtoMapper.toSchedule(scheduleService.getSchedule(scheduleId));
+        PdfCreator pdfCreator = new PdfCreator(schedule);
+        pdfCreator.export(response);
+    }
+
+    public ScheduleDTO assignEmployeeToShift(Long scheduleId, Long employeeId, Long shiftId) {
+        return scheduleService.assignEmployeeToShift(scheduleId, employeeId, shiftId);
     }
 
     public List<ScheduleDTO> getAllSchedules() {
@@ -48,5 +61,4 @@ public class ScheduleFacade {
     public EmployeeDTO addEmployee(AddEmployeeCommand command) {
         return employeeService.addEmployee(command);
     }
-
 }

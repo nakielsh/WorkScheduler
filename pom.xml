@@ -130,6 +130,46 @@
             <version>4.0.6</version>
         </dependency>
 
+        <dependency>
+            <artifactId>itext7-core</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <version>7.1.18</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>kernel</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <version>7.1.18</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>forms</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <version>7.1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>layout</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <version>7.1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>svg</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <version>7.1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>hyph</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <scope>test</scope>
+            <version>7.1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>pdfa</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <scope>test</scope>
+            <version>7.1.18</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

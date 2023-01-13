@@ -4,11 +4,13 @@ import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toAddEmploye
 import static pw.edu.pl.workscheduler.domain.commands.CommandMapper.toInitiateScheduleCommand;
 
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pw.edu.pl.workscheduler.domain.ScheduleFacade;
 import pw.edu.pl.workscheduler.domain.commands.AddEmployeeToScheduleCommand;
@@ -21,8 +23,6 @@ import pw.edu.pl.workscheduler.infrastructure.controller.request.InitiateSchedul
 @RestController
 @AllArgsConstructor
 class ScheduleController {
-
-    // @TODO exchange existing employee in shift
 
     private final ScheduleFacade scheduleFacade;
 
@@ -38,6 +38,15 @@ class ScheduleController {
         return CompactDtoMapper.toCompactScheduleDTO(scheduleFacade.getSchedule(id));
     }
 
+    @GetMapping("/schedule/{id}/pdf")
+    void generateSchedulePDF(@PathVariable(name = "id") Long id, HttpServletResponse response) {
+        try {
+            scheduleFacade.generateSchedulePDF(id, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @GetMapping("/schedules")
     List<SuperCompactScheduleDTO> getAllSchedules() {
         return scheduleFacade.getAllSchedules().stream()
@@ -50,5 +59,15 @@ class ScheduleController {
         AddEmployeeToScheduleCommand command = toAddEmployeeToScheduleCommand(request);
 
         return CompactDtoMapper.toCompactScheduleDTO(scheduleFacade.addEmployeeToSchedule(command));
+    }
+
+    @PostMapping("/schedule/employee/shift")
+    CompactScheduleDTO assignEmployeeToShift(
+            @RequestParam Long scheduleId,
+            @RequestParam Long shiftId,
+            @RequestParam Long employeeId) {
+
+        return CompactDtoMapper.toCompactScheduleDTO(
+                scheduleFacade.assignEmployeeToShift(scheduleId, shiftId, employeeId));
     }
 }

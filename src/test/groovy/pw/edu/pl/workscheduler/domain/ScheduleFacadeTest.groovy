@@ -6,6 +6,7 @@ import pw.edu.pl.workscheduler.domain.database.InMemoryEmployeeRepo
 import pw.edu.pl.workscheduler.domain.database.InMemoryScheduleRepo
 import pw.edu.pl.workscheduler.domain.dto.EmployeeDTO
 import pw.edu.pl.workscheduler.domain.dto.ScheduleDTO
+import pw.edu.pl.workscheduler.domain.dto.ShiftDTO
 import pw.edu.pl.workscheduler.domain.ports.EmployeeOutputPort
 import pw.edu.pl.workscheduler.domain.ports.ScheduleOutputPort
 import spock.lang.Specification
@@ -121,6 +122,30 @@ class ScheduleFacadeTest extends Specification implements EmployeeFixture, Sched
         isEmployeeDTOEqual(updatedSchedule.employeeList.get(0), employee1())
         isEmployeeDTOEqual(updatedSchedule.employeeList.get(1), employee2())
         isEmployeeDTOEqual(updatedSchedule.employeeList.get(2), employeeDTOWithoutUnavailability())
+    }
+
+    def "should assign new employee to existing shift"(Long shiftId) {
+        given:
+        def schedule = scheduleFacade.generateSchedule(initiateScheduleCommand(1, List.of(1L, 2L)))
+        def updatedByEmployeeSchedule = scheduleFacade.addEmployeeToSchedule(addEmployeeToScheduleCommand(schedule.id))
+
+        when:
+        def finalSchedule = scheduleFacade.assignEmployeeToShift(1, 3, shiftId)
+
+        then:
+        finalSchedule.employeeList.size() == 3
+
+        ShiftDTO unchangedShift = getShiftById(shiftId, updatedByEmployeeSchedule)
+
+        if (unchangedShift.employee != null) {
+            unchangedShift.employee.id != 3
+        }
+
+        getShiftById(shiftId, finalSchedule).employee.id == 3
+
+        where:
+        shiftId << [1, 7]
+
     }
 
     private void addEmployees(List<AddEmployeeCommand> addEmployeeCommandList) {

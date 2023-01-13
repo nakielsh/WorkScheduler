@@ -37,6 +37,12 @@ class Employee {
         allShiftsLeft--;
     }
 
+    void removeShift(Shift shift) {
+        shifts.remove(shift);
+        workingDays.remove(shift.getStartTime().toLocalDate());
+        allShiftsLeft++;
+    }
+
     void calculateAvailability(List<Shift> shifts) {
         int availability = 0;
         for (Shift shift : shifts) {

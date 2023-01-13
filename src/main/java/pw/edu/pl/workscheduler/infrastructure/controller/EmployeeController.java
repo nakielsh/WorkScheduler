@@ -16,7 +16,7 @@ import pw.edu.pl.workscheduler.infrastructure.controller.request.AddEmployeesReq
 @RestController
 @AllArgsConstructor
 @RequestMapping("/employees")
-public class EmployeeController {
+class EmployeeController {
 
     private final ScheduleFacade scheduleFacade;
 

@@ -36,4 +36,12 @@ trait ScheduleFixture {
                 scheduleDTO1.employeeList == scheduleDTO2.employeeList
     }
 
+    ShiftDTO getShiftById(long id, ScheduleDTO scheduleDTO) {
+        return scheduleDTO.shiftDays.stream()
+                .flatMap(shiftDay -> shiftDay.shiftsForADay.stream())
+                .filter(shift -> shift.id == id)
+                .findFirst()
+                .orElseThrow()
+    }
+
 }

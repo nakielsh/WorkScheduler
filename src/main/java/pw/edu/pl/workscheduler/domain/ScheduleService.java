@@ -44,13 +44,6 @@ class ScheduleService {
         return scheduleDTOs;
     }
 
-    private List<Employee> getEmployeesFromId(List<Long> employeeIds) {
-        return employeeIds.stream()
-                .map(employeePort::getEmployeeById)
-                .map(EmployeeDtoMapper::toEmployee)
-                .toList();
-    }
-
     ScheduleDTO generateSchedule(Long scheduleId) {
         Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
         Schedule generatedSchedule = new BOE(schedule).generateSchedule();
@@ -71,5 +64,23 @@ class ScheduleService {
                 schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
         schedule = ScheduleDtoMapper.toSchedule(scheduleDTO);
         return ScheduleDtoMapper.toScheduleDTO(schedule);
+    }
+
+    ScheduleDTO assignEmployeeToShift(Long scheduleId, Long employeeId, Long shiftId) {
+        Schedule schedule = ScheduleDtoMapper.toSchedule(schedulePort.getSchedule(scheduleId));
+        Employee employee = EmployeeDtoMapper.toEmployee(employeePort.getEmployeeById(employeeId));
+        schedule.assignEmployeeToShift(shiftId, employee);
+
+        ScheduleDTO scheduleDTO =
+                schedulePort.saveSchedule(ScheduleDtoMapper.toScheduleDTO(schedule));
+        schedule = ScheduleDtoMapper.toSchedule(scheduleDTO);
+        return ScheduleDtoMapper.toScheduleDTO(schedule);
+    }
+
+    private List<Employee> getEmployeesFromId(List<Long> employeeIds) {
+        return employeeIds.stream()
+                .map(employeePort::getEmployeeById)
+                .map(EmployeeDtoMapper::toEmployee)
+                .toList();
     }
 }
